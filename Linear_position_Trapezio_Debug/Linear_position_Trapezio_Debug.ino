@@ -141,7 +141,7 @@ float calculoTrapezio(unsigned long tempo){
   for(int i=1; i<amostras; i++){
     velocidades[i] =  (aceleracoes[i-1]+aceleracoes[i])*tempo/2000000;
     velocidades[i] = mediaMovel(velocidades[i]);
-    Serial.println(velocidades[i]);
+   // Serial.println(velocidades[i]);
     velocidades[i] += velocidades[i-1];
   }
 
