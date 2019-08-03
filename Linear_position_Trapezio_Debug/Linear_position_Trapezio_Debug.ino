@@ -120,26 +120,13 @@ void calculaPosicao() {
     lerAcc();
   }
   
-  ay = abs(ay);
-  
-  aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
-  Serial.println(aceleracoes[contagem]);
-  timer = micros() - timer;
-  
-  if(contagem == amostras){
-  contagem=0;
-  float posicao;
-  posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
- // Serial.println(posicao);
-  }else{
-  contagem++;
-  }
 }
  
 void lerAcc(){
   timer = micros();
   //Serial.println(timer);
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);  
+  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz); 
+  Serial.println(ay); 
 }
 
 float calculoTrapezio(unsigned long tempo){
