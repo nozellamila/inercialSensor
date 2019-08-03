@@ -2,7 +2,7 @@
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "MPU6050.h"
-#include <Wire.h>
+#include<TimerOne.h>
 #include <avr/sleep.h>  
 #include <Wire.h>
 
@@ -16,12 +16,19 @@
 
 #define amostras 50
 
+#define TIMER_US 20000                         // 1mS set timer duration in microseconds 
+
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
 #define MPUsampFreq 40 //Hz
 #define mpu_interval 25 //Each 10ms
 
 #define PSDMP 42 //Packet size DMP
+
+//Variaveis Gerais
+//TODO: trocar esses millis por timer
+unsigned long currentMillis = 0;
+unsigned long previousMPUMillis = 0;
 
 uint32_t timer = 0;
 double dt;
@@ -69,6 +76,10 @@ void setup() {
 #endif
   iniciar_sensor_inercial();
 
+   
+  Timer1.initialize(TIMER_US);                  // Initialise timer1
+  Timer1.attachInterrupt( lerAcc );           // attach the ISR routine here
+ 
   //Serial:
   Serial.begin(115200);
   
@@ -76,7 +87,7 @@ void setup() {
 
 uint16_t readdata;
 
-void loop() {
+void loop() { 
   calculaPosicao(); //Acumula dados e calcula posicao
 }
 
@@ -117,9 +128,24 @@ void calculaPosicao() {
      mpu.getFIFOBytes(fifoBuffer, PSDMP);
      numbPackets--;
     }
-    lerAcc();
+    //lerAcc();
   }
+  
+  ay = abs(ay);
 
+  aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+  timer = micros() - timer;
+  //Serial.println(timer);
+    
+  if(contagem == amostras){
+  contagem=0;
+  float posicao;
+  posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
+  //Serial.println(posicao);
+  
+  }else{
+  contagem++;
+  } 
 
 }
  
@@ -127,24 +153,8 @@ void lerAcc(){
   timer = micros();
   //Serial.println(timer);
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz); 
-  //Serial.println(ay);
+  Serial.println(ay);
   
-  ay = abs(ay);
-
-  aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
-  //Serial.println(aceleracoes[contagem]);
-  timer = micros() - timer;
-
-  if(contagem == amostras){
-  contagem=0;
-  float posicao;
-  posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
-  Serial.println(posicao);
-  
-  }else{
-  contagem++;
-  } 
-
 }
 
 float calculoTrapezio(unsigned long tempo){
