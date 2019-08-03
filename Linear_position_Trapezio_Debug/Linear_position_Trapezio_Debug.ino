@@ -14,14 +14,22 @@
 //#define DEBUG
 #define LED_PIN 13
 
-
 #define amostras 50
+
+//NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
+//CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
+#define MPUsampFreq 40 //Hz
+#define mpu_interval 25 //Each 10ms
+
+#define PSDMP 42 //Packet size DMP
 
 uint32_t timer = 0;
 double dt;
 
 //Variaveis Inercial
 MPU6050 mpu(0x68);
+uint8_t fifoBuffer[42]; // FIFO storage fifoBuffer of mpu
+int numbPackets;
 
 int16_t ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
 
@@ -79,11 +87,6 @@ void loop() {
 void iniciar_sensor_inercial() {
   if (mpu.testConnection()) {
     mpu.initialize(); //Initializes the IMU
-    uint8_t ret = mpu.dmpInitialize(); //Initializes the DMP
-    delay(50);
-    if (ret == 0) {
-      mpu.setDMPEnabled(true);
-      //mpu.setDLPFMode(3);
       //trocar
       ax_offset = mpu.getXAccelOffset();
       ay_offset = mpu.getYAccelOffset();
@@ -99,40 +102,45 @@ void iniciar_sensor_inercial() {
       mpu.setYGyroOffset(gy_offset);
       mpu.setZGyroOffset(gz_offset);
       Serial.println("Sensor Inercial configurado com sucesso.\n");
-    } else {
-      //TODO: adicionar uma forma melhor de aviso. outro led?
-      Serial.println("Erro na inicializacao do sensor Inercial!\n");
-    }
   } else {
     Serial.println("Erro na conexao do sensor Inercial.\n");
   }
 }
-
+    
+void calculaPosicao() {
+  numbPackets = floor(mpu.getFIFOCount() / PSDMP);
+  if (numbPackets >= 24) {
+    mpu.resetFIFO();
+    DEBUG_PRINT("FIFO sensor 1 overflow!\n"); //TODO: mostrar isso de alguma forma. outro led?
+  } else {
+    while (numbPackets > 0) {
+     mpu.getFIFOBytes(fifoBuffer, PSDMP);
+     numbPackets--;
+    }
+    lerAcc();
+  }
+  
+  ay = abs(ay);
+  
+  aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+  Serial.println(aceleracoes[contagem]);
+  timer = micros() - timer;
+  
+  if(contagem == amostras){
+  contagem=0;
+  float posicao;
+  posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
+ // Serial.println(posicao);
+  }else{
+  contagem++;
+  }
+}
+ 
 void lerAcc(){
   timer = micros();
   //Serial.println(timer);
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);  
 }
-
-void calculaPosicao() {
-
-    lerAcc();
-    
-    ay = abs(ay);
-    
-    aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
-   // Serial.println(aceleracoes[contagem]);
-    timer = micros() - timer;
-    
-    if(contagem == amostras){
-    contagem=0;
-    float posicao;
-    posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
-   // Serial.println(posicao);
-    }else{
-    contagem++;
-    }
- }
 
 float calculoTrapezio(unsigned long tempo){
   float posicao = 0;
@@ -141,7 +149,7 @@ float calculoTrapezio(unsigned long tempo){
   for(int i=1; i<amostras; i++){
     velocidades[i] =  (aceleracoes[i-1]+aceleracoes[i])*tempo/2000000;
     velocidades[i] = mediaMovel(velocidades[i]);
-   // Serial.println(velocidades[i]);
+    //Serial.println(velocidades[i]);
     velocidades[i] += velocidades[i-1];
   }
 
