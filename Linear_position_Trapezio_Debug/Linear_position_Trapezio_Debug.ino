@@ -16,7 +16,7 @@
 
 #define amostras 50
 
-#define TIMER_US 20000                         // 1mS set timer duration in microseconds 
+#define TIMER_US 10000                         // 1mS set timer duration in microseconds 
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
@@ -78,17 +78,17 @@ void setup() {
 
    
   Timer1.initialize(TIMER_US);                  // Initialise timer1
-  Timer1.attachInterrupt( lerAcc );           // attach the ISR routine here
+  Timer1.attachInterrupt( calculaPosicao );           // attach the ISR routine here
  
   //Serial:
-  Serial.begin(115200);
+  Serial.begin(19200);
   
 }
 
 uint16_t readdata;
 
 void loop() { 
-  calculaPosicao(); //Acumula dados e calcula posicao
+ // calculaPosicao(); //Acumula dados e calcula posicao
 }
 
 ////////////////////
@@ -128,7 +128,7 @@ void calculaPosicao() {
      mpu.getFIFOBytes(fifoBuffer, PSDMP);
      numbPackets--;
     }
-    //lerAcc();
+    lerAcc();
   }
   
   ay = abs(ay);
