@@ -13,7 +13,7 @@
 //#define DEBUG
 #define LED_PIN 13
 
-#define amostras 50
+#define amostras 100
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
@@ -119,17 +119,18 @@ void calculaPosicao() {
     lerAcc();
   }
   
-  ay = abs(ay);
+  ax = abs(ax);
 
-  aceleracoes[contagem] = (((float)ay - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+  aceleracoes[contagem] = (((float)ax - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+  //aceleracoes[contagem] = mediaMovel(aceleracoes[contagem]);
   timer = micros() - timer;
-  //Serial.println(timer);
+  Serial.println(timer);
     
   if(contagem == amostras){
   contagem=0;
   float posicao;
   posicao += calculoTrapezio(timer)*100; // A função retorna o valor em metros, então multiplico por 100 para converter para centímetros
-  Serial.println(posicao);
+  //Serial.println(posicao);
   
   }else{
   contagem++;
@@ -141,7 +142,7 @@ void lerAcc(){
   timer = micros();
   //Serial.println(timer);
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz); 
- // Serial.println(ay);
+  //Serial.println(az);
   
 }
 
@@ -151,15 +152,15 @@ float calculoTrapezio(unsigned long tempo){
   // Calcula as velocidades pela regra do trapézio
   for(int i=1; i<amostras; i++){
     velocidades[i] =  (aceleracoes[i-1]+aceleracoes[i])*tempo/2000000;
-    velocidades[i] = mediaMovel(velocidades[i]);
-    //Serial.println(velocidades[i]);
+    //velocidades[i] = mediaMovel(velocidades[i]);
     velocidades[i] += velocidades[i-1];
+    //Serial.println(velocidades[i]);
   }
 
   // Calcula o deslocamento pela regra do trapézio
   for(int i=0; i<amostras - 1; i++){
     posicao +=  (velocidades[i]+velocidades[i+1])*tempo/2000000;
-    //mediaMovel(posicao);
+    //posicao = mediaMovel(posicao);
   }
 
   //Armazena a ultima velocidade para ser a primeira de todas da próxima medição
