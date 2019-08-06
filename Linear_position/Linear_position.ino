@@ -15,16 +15,12 @@
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
 #define MPUsampFreq 40 //Hz
-#define mpu_interval 25 //Each 10ms
 
 #define PSDMP 42 //Packet size DMP
 
 #define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead
 
 
-//TODO: trocar esses millis por timer
-unsigned long currentMillis = 0;
-unsigned long previousMPUMillis = 0;
 uint32_t timer = 0;
 double dt;
 
@@ -57,13 +53,7 @@ void setup() {
 }
 
 void loop() {
-  currentMillis = millis();
-  if (currentMillis - previousMPUMillis >= mpu_interval) {
-    previousMPUMillis = currentMillis;
-    ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
-  }
-  
-
+  ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
 }
 
 ////////////////////
@@ -73,12 +63,6 @@ void loop() {
 void iniciar_sensor_inercial() {
   if (mpu.testConnection()) {
     mpu.initialize(); //Initializes the IMU
-    uint8_t ret = mpu.dmpInitialize(); //Initializes the DMP
-    delay(50);
-    if (ret == 0) {
-      mpu.setDMPEnabled(true);
-      mpu.setDLPFMode(3);
-      b = mpu.getFullScaleAccelRange();
       //trocar
       ax_offset = mpu.getXAccelOffset();
       ay_offset = mpu.getYAccelOffset();
@@ -94,10 +78,6 @@ void iniciar_sensor_inercial() {
       mpu.setYGyroOffset(gy_offset);
       mpu.setZGyroOffset(gz_offset);
       Serial.println("Sensor Inercial configurado com sucesso.\n");
-    } else {
-      //TODO: adicionar uma forma melhor de aviso. outro led?
-      Serial.println("Erro na inicializacao do sensor Inercial!\n");
-    }
   } else {
     Serial.println("Erro na conexao do sensor Inercial.\n");
   }
@@ -115,22 +95,11 @@ void ler_sensor_inercial() {
     }
     enviar_pacote_inercial();
   }
-}
-
-void enviar_pacote_inercial() {
-  // display Euler angles in degrees
-  mpu.dmpGetQuaternion(&q, fifoBuffer);
-  mpu.dmpGetGravity(&gravity, &q);
-  mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-  //ax = mpu.getAccelerationX ();
-
   dt = (double)(millis() - timer); // Calculate delta time
-  timer = millis();
 
-  i =  (float) ay;
+  ay =  abs(ay);
   
-  accel_x[1] = (i/16834)*9.8;
+  accel_x[1] = (((float)ay)/16834)*9.8;
 
 //  if (accel_x[1] > -3 && accel_x[1] < 3){
 //    accel_x[1] = 0;
@@ -167,50 +136,18 @@ void enviar_pacote_inercial() {
   yprH = yprI / 256;
   yprL = yprI - yprH*256;
   
-    Serial.print("acel ");
-    Serial.println(accel_x[1]); //USAR ESSE
-    Serial.print("pos ");
-    Serial.println(pos_x[1]);
-    Serial.print("delta ");
-    Serial.println(dt);
-//    Serial.print("\t");
-//  Serial.write(0x7E);
-//  Serial.write(yprH);
-//  Serial.write(yprL);
-//  Serial.write(SH);
-//  Serial.write(SL);
-//  Serial.print("accel e pos inteiro\t");
-//  Serial.print(SI);
-//  Serial.print("\t");
-//  Serial.print(yprI);
-//  Serial.print("\n");
-//  Serial.print("aceleracao\t");
-//  Serial.println(accel_x[1]);
-//  Serial.print("\t");
-//  Serial.println(pos_x[1]);
-//  Serial.print("\n");
-//  Serial.print("aceleracao ypr\t");
-//  Serial.println(accel_x[1]*10000);
-//  Serial.print("\t");
- // Serial.println(ypr[0]);
-//  Serial.print("\n");
-//Serial.write(yprI);
- // Serial.write(SI);
-//  Serial.write(0x81);
-  
-//  delay(100);
-//  Serial.print("\t");
-//  Serial.print(kalAngleX);
-//  Serial.println(S);
+  Serial.print("acel ");
+  Serial.println(accel_x[1]); //USAR ESSE
+  Serial.print("vel ");
+  Serial.println(vel_x[1]);
+  Serial.print("pos ");
+  Serial.println(pos_x[1]);
+  Serial.print("delta ");
+  Serial.println(dt);
+}
 
-  
- // Serial.println("Offsets\t");
-//  Serial.print(ax_offset); //USAR ESSE
-//  Serial.print("\t");
-//  Serial.print(ay_offset);
-//  Serial.print("\t");
-//  Serial.println(ax_offset);
-//  Serial.print(gz_offset);
-//  Serial.print("\t");
+void enviar_pacote_inercial() {
+  timer = millis();
+  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
 }
