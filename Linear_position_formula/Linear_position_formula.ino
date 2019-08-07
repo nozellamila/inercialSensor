@@ -101,53 +101,11 @@ void ler_sensor_inercial() {
   
   accel_x[1] = (((float)ay)/16834)*9.8;
 
-//  if (accel_x[1] > -3 && accel_x[1] < 3){
-//    accel_x[1] = 0;
-//  }
+  pos_x[1] = (accel_x[1]*dt*dt)/2000;
   
-  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*dt)/2;
-
-  soma = soma + vel_x[1];
-
-  media = soma/n;
-
-  vel_x_zero[1] = vel_x[1] - media;
-
-  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*dt)/2;
-
-  soma1 = soma1 + pos_x[1];
-
-  media1 = soma1/n;
-
-  pos_x_zero[1] = pos_x[1] - media1;
-  
-  accel_x[0] = accel_x[1];
-  vel_x[0] = vel_x[1];
-  pos_x[0] = pos_x[1];
-  vel_x_zero[0] = vel_x_zero[1];
-  n++;
-  
-
-  SI = (int) (pos_x[1]*10000);
-  SH = SI / 256;
-  SL = SI - SH*256;
-  
-  yprI = (int) (accel_x[1]*10000);
-  yprH = yprI / 256;
-  yprL = yprI - yprH*256;
-  /*
-  Serial.print("acel ");
-  Serial.println(accel_x[1]); //USAR ESSE
-  Serial.print("vel ");
-  Serial.println(vel_x[1]);
-  Serial.print("pos ");
-  Serial.println(pos_x[1]);
-  Serial.print("delta ");
-  Serial.println(dt);
-  */
-  Serial.print(vel_x[1]);
+  Serial.print(ay);
   Serial.print(" ");
-  Serial.println(pos_x[1]);
+  Serial.println(pos_x[1]*100);
 }
 
 void enviar_pacote_inercial() {
