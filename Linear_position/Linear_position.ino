@@ -21,7 +21,7 @@
 #define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead
 
 
-uint32_t timer = 0;
+uint32_t timer = 0, timer2;
 double dt;
 
 //Variaveis Inercial
@@ -95,9 +95,9 @@ void ler_sensor_inercial() {
     }
     enviar_pacote_inercial();
   }
-  dt = (double)(millis() - timer); // Calculate delta time
-
-  ay =  abs(ay);
+  dt = timer - timer2;
+  
+  //ay =  abs(ay);
   
   accel_x[1] = (((float)ay)/16834)*9.8;
 
@@ -105,7 +105,7 @@ void ler_sensor_inercial() {
 //    accel_x[1] = 0;
 //  }
   
-  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*dt)/2;
+  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*dt)/2000;
 
   soma = soma + vel_x[1];
 
@@ -113,7 +113,7 @@ void ler_sensor_inercial() {
 
   vel_x_zero[1] = vel_x[1] - media;
 
-  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*dt)/2;
+  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*dt)/2000;
 
   soma1 = soma1 + pos_x[1];
 
@@ -126,7 +126,7 @@ void ler_sensor_inercial() {
   pos_x[0] = pos_x[1];
   vel_x_zero[0] = vel_x_zero[1];
   n++;
-  
+  timer2 = millis();
 
   SI = (int) (pos_x[1]*10000);
   SH = SI / 256;
