@@ -16,10 +16,7 @@
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
 #define MPUsampFreq 40 //Hz
 
-#define PSDMP 42 //Packet size DMP
-
-#define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead
-
+#define PSDMP 42 //Fifo storage
 
 uint32_t timer = 0;
 double dt;
@@ -35,6 +32,8 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
 float ypr[3];
 float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0}, soma = 0, soma1 = 0, media, media1, vel_x_zero[2] = {0, 0}, pos_x_zero[1] = {0}, i = 0;
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset, yprI, SI, n = 1, a = 0, b = 0;
+
+double t1, t2, t3;
 
 int16_t ax, ay, az, gx, gy, gz;
 
@@ -53,7 +52,9 @@ void setup() {
 }
 
 void loop() {
+
   ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
+
 }
 
 ////////////////////
@@ -84,6 +85,7 @@ void iniciar_sensor_inercial() {
 }
 
 void ler_sensor_inercial() {
+  t1 = millis();
   numbPackets = floor(mpu.getFIFOCount() / PSDMP);
   if (numbPackets >= 24) {
     mpu.resetFIFO();
@@ -92,7 +94,7 @@ void ler_sensor_inercial() {
     while (numbPackets > 0) {
       mpu.getFIFOBytes(fifoBuffer, PSDMP);
       numbPackets--;
-    }
+    }   
     enviar_pacote_inercial();
   }
   dt = (double)(millis() - timer); // Calculate delta time
@@ -103,13 +105,14 @@ void ler_sensor_inercial() {
 
   pos_x[1] = (accel_x[1]*dt*dt)/2000;
   
-  Serial.print(ay);
+  Serial.print(accel_x[1]);
   Serial.print(" ");
-  Serial.println(pos_x[1]*100);
+  Serial.println(pos_x[1]*1000);
 }
 
 void enviar_pacote_inercial() {
   timer = millis();
+ 
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
 }
