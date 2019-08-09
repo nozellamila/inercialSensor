@@ -1,0 +1,156 @@
+/* Edit the v (version) parameter when changing this file.
+   This is in the caller, ie.
+   <link type="text/css" rel="stylesheet" href="/style.css?v=11">
+
+   This is v12 of the stylesheet. Changing that forces a reload.
+*/
+
+
+ body {
+       font-family:Verdana, Arial, Helvetica, Geneva,  sans-serif;
+       background-image:url(/images/backgrnd.gif);
+      }
+
+ pre {
+     font-family:monospace;
+     }
+
+  .quote > .quote { margin:1em; border:1px solid black;}
+
+  .quote {
+    margin-left:5em;
+    margin-right:5em;
+    background-color:#FFEBCD;
+    border-width:1px;
+    border-style:solid;
+    padding:1em;
+    font-size:90%;
+    }
+
+ .postbody {
+        font-family: Georgia, serif;
+              }
+
+ .tip {
+    margin-left:5em;
+    background-color:#EEE8AA;
+    border-width:1px;
+    border-style:solid;
+    border-spacing:10px 10px;
+    padding:1em;
+    font-size:90%;
+    margin-right:5em;
+    }
+
+ hr.quote {
+    margin-left:5em;
+    }
+
+ code {
+    font-size:larger;
+    }
+
+  .codetag {
+    font-size:85%;
+    margin-left:2em;
+    margin-right:2em;
+    margin-top:1em;
+    margin-bottom:1em;
+    background-color:#FFE4B5;
+    border-width:1px;
+    border-style:solid;
+    padding-left:1em;
+    padding-right:1em;
+    padding-top:0px;
+    padding-bottom:2px;
+    overflow:auto;
+    }
+
+ table.template {
+    margin-left:3em;
+    margin-right:4em;
+    border-style:solid;
+    border-width:1px;
+    background-color:#EEE8AA;
+    padding:1em;
+    font-size:90%;
+    margin-top:10px;
+    margin-bottom:10px;
+    border-left-width:10px;
+    border-left-color:#CD5C5C;
+
+  }
+
+ .heading {
+   border-bottom:1px solid rgb(170, 170, 170);
+   font-size:150%;
+   padding-bottom:0.17em;
+   padding-top:0.5em;
+   display:block;
+  }
+
+  .fancyquote {
+	padding-top: 3px;
+	overflow: hidden;
+	font-size: small;
+	line-height: 150%;
+	color: #454545;
+  margin-left: 2em;
+  }
+
+  .fancyquote:before {
+  font-family:"Times New Roman", Times, serif;
+	display: block;
+	float: left;
+	margin: 10px 15px 0 0;
+	font-size: 50px;
+	content: "\201C";
+	color: #9F9F9F;
+	text-shadow: 0 1px 1px #909090;
+  }
+
+  .fancyquote:after {
+  font-family:"Times New Roman", Times, serif;
+	display: block;
+	float: right;
+	margin: 10px 0px 0 15px;
+	font-size: 50px;
+	content: "\201D";
+	color: #9F9F9F;
+	text-shadow: 0 1px 1px #909090;
+
+  }
+
+ .sourceCode {
+    background-color:#EEEEEE;
+    display:block;
+    padding:5px;
+    margin:1em 1em 1em 1em;
+    font-size:100%;
+    }
+
+ .sourceLine > span.kw { color: #204a87; font-weight: bold; }
+ .sourceLine > span.dt { color: #204a87; }
+ .sourceLine > span.dv { color: #0000cf; }
+ .sourceLine > span.bn { color: #0000cf; }
+ .sourceLine > span.fl { color: #0000cf; }
+ .sourceLine > span.ch { color: #4e9a06; }
+ .sourceLine > span.st { color: #4e9a06; }
+ .sourceLine > span.co { color: #8f5902; font-style: italic; }
+ .sourceLine > span.ot { color: #8f5902; }
+ .sourceLine > span.al { color: #ef2929; }
+ .sourceLine > span.fu { color: #000000; }
+ .sourceLine > span.cf { color: #0027c1; }
+ .sourceLine > span.er { font-weight: bold; }
+
+blockquote {
+  background: #fff9e3;
+  border-left: 10px solid #ffeb8e;
+  margin:1em 1em 1em 1em;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote p {
+  display: inline;
+}
+

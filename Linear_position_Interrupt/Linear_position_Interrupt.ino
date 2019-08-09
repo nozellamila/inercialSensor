@@ -1,189 +1,173 @@
-#include <avr/sleep.h>  
-#include <Wire.h>
+//#include <VarSpeedServo.h>
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
-#include "MPU6050.h"
-
-//Analog port 4 (A4) = SDA (serial data)
-//Analog port 5 (A5) = SCL (serial clock)
-#define SIGNAL_PATH_RESET  0x68
-#define I2C_SLV0_ADDR      0x37
-#define ACCEL_CONFIG       0x1C 
-#define MOT_THR            0x1F  // Motion detection threshold bits [7:0]
-#define MOT_DUR            0x20  // Duration counter threshold for motion interrupt generation, 1 kHz rate, LSB = 1 ms
-#define MOT_DETECT_CTRL    0x69
-#define INT_ENABLE         0x38
-#define WHO_AM_I_MPU6050   0x75 // Should return 0x68
-#define INT_STATUS 0x3A
-//when nothing connected to AD0 than address is 0x68
-#define ADO 0
-#if ADO
-#define MPU6050_ADDRESS 0x69  // Device address when ADO = 1
-#else
-#define MPU6050_ADDRESS 0x68  // Device address when ADO = 0
-#endif
-
-MPU6050 mpu(0x68);
-
-int wakePin = 2;                 // pin used for waking up  
-int led=13;
-int flag=0;
-
-int16_t ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
-
-int16_t ax = 0, ay, az, gx, gy, gz;
-
-void wakeUpNow() 
-{        // THE PROGRAM CONTINUES FROM HERE AFTER WAKING UP    (i.e. after getting interrupt)
-  // execute code here after wake-up before returning to the loop() function  
-  // timers and code using timers (serial.print and more...) will not work here.  
-  // we don't really need to execute any special functions here, since we  
-  // just want the thing to wake up 
-  
-  delay(500);  
-  Serial.println("Rajat9");  
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-  Serial.println(ay);
-
-}  
-
-
-/*    Example for using write byte
-      Configure the accelerometer for self-test
-      writeByte(MPU6050_ADDRESS, ACCEL_CONFIG, 0xF0); // Enable self test on all three axes and set accelerometer range to +/- 8 g */
-void writeByte(uint8_t address, uint8_t subAddress, uint8_t data)
-{
-  Wire.begin();
-  Wire.beginTransmission(address);  // Initialize the Tx buffer
-  Wire.write(subAddress);           // Put slave register address in Tx buffer
-  Wire.write(data);                 // Put data in Tx buffer
-  Wire.endTransmission();           // Send the Tx buffer
-//  Serial.println("mnnj");
-
-}
-
-//example showing using readbytev   ----    readByte(MPU6050_ADDRESS, GYRO_CONFIG);
-uint8_t readByte(uint8_t address, uint8_t subAddress)
-{
-  uint8_t data;                            // `data` will store the register data   
-  Wire.beginTransmission(address);         // Initialize the Tx buffer
-  Wire.write(subAddress);                  // Put slave register address in Tx buffer
-  Wire.endTransmission(false);             // Send the Tx buffer, but send a restart to keep connection alive
-  Wire.requestFrom(address, (uint8_t) 1);  // Read one byte from slave register address 
-  data = Wire.read();                      // Fill Rx buffer with result
-  return data;                             // Return data read from slave register
-}
-
-
-void setup() 
-{  
-//Sensor Inercial
+//#include "MPU6050.h" 
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-  Wire.begin();
-  Wire.setClock(200000); //NOTE: Ajustar de acordo com arduino utilizado
-#elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
-  Fastwire::setup(400, true);
+    #include "Wire.h"
 #endif
-  iniciar_sensor_inercial();
-
-   /*
-    * #define SIGNAL_PATH_RESET  0x68
-      #define I2C_SLV0_ADDR      0x37
-      #define ACCEL_CONFIG       0x1C 
-      #define MOT_THR            0x1F  // Motion detection threshold bits [7:0]
-      #define MOT_DUR            0x20  // Duration counter threshold for motion interrupt generation, 1 kHz rate, LSB = 1 ms
-      #define MOT_DETECT_CTRL    0x69
-      #define INT_ENABLE         0x38
-      #define WHO_AM_I_MPU6050 0x75 // Should return 0x68
-      #define INT_STATUS 0x3A*/
-    Serial.begin(9600);
-    writeByte( MPU6050_ADDRESS, 0x6B, 0x00);
-    writeByte( MPU6050_ADDRESS, SIGNAL_PATH_RESET, 0x07);//Reset all internal signal paths in the MPU-6050 by writing 0x07 to register 0x68;
-    writeByte( MPU6050_ADDRESS, I2C_SLV0_ADDR, 0x20);//write register 0x37 to select how to use the interrupt pin. For an active high, push-pull signal that stays until register (decimal) 58 is read, write 0x20.
-    writeByte( MPU6050_ADDRESS, ACCEL_CONFIG, 0x01);//Write register 28 (==0x1C) to set the Digital High Pass Filter, bits 3:0. For example set it to 0x01 for 5Hz. (These 3 bits are grey in the data sheet, but they are used! Leaving them 0 means the filter always outputs 0.)
-    writeByte( MPU6050_ADDRESS, MOT_THR, 20);  //Write the desired Motion threshold to register 0x1F (For example, write decimal 20).  
-    writeByte( MPU6050_ADDRESS, MOT_DUR, 40 );  //Set motion detect duration to 1  ms; LSB is 1 ms @ 1 kHz rate  
-    writeByte( MPU6050_ADDRESS, MOT_DETECT_CTRL, 0x15); //to register 0x69, write the motion detection decrement and a few other settings (for example write 0x15 to set both free-fall and motion decrements to 1 and accelerometer start-up delay to 5ms total by adding 1ms. )   
-    writeByte( MPU6050_ADDRESS, INT_ENABLE, 0x40 ); //write register 0x38, bit 6 (0x40), to enable motion detection interrupt.     
-    writeByte( MPU6050_ADDRESS, 0x37, 160 ); // now INT pin is active low
-
-    pinMode(2, INPUT);        // sets the digital pin 7 as input
-
-  pinMode(wakePin, INPUT_PULLUP);  // wakePin is pin no. 2
-  pinMode(led, OUTPUT);          //   led is pin no. 13
- // attachInterrupt(0, wakeUpNow, LOW); // use interrupt 0 (pin 2) and run function wakeUpNow when pin 2 gets LOW
-
-}  
-
-void sleepNow() 
-{  
-    set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here  
-    sleep_enable();                        // enables the sleep bit in the mcucr register  
-                      delay(500);  
-                      Serial.println("Rajat");  
-                      delay(500);
-    attachInterrupt(0,wakeUpNow, LOW); // use interrupt 0 (pin 2) and run function  
-                      delay(500);  
-                      Serial.println("Rajat62");  
-                      delay(500);
-    sleep_mode();     // here the device is actually put to sleep...!!
-
-
-     // THE PROGRAM CONTINUES FROM HERE AFTER INTERRUPT IS CLOSED
-     
-                      delay(500);  
-                      Serial.println("Rajat2");  
-                      delay(500);
-
-       sleep_disable();         // first thing after waking from sleep: disable sleep...  
-                      delay(500);  
-                      Serial.println("Rajat3");  
-                      delay(500);
-        detachInterrupt(0);   /*  We detach the interrupt to stop it from 
-                                * continuously firing while the interrupt pin
-                                * is low.
-                                */
-}  
- uint16_t readdata;
-void loop() 
-{     
-      if(digitalRead(2)==0)
-      {
-        {
-
-          digitalWrite(13, 1);
-          delay(100);
-          digitalWrite(13, 0);
-          delay(100);
-        }
-      }
-      sleepNow();     // sleep function called here
-      readdata = readByte(MPU6050_ADDRESS,0x3A);
-      Serial.print(readdata);Serial.print(",");
-      readdata = readByte(MPU6050_ADDRESS,0x37);
-      Serial.println(readdata);      
-
-}  
-
-void iniciar_sensor_inercial() {
-  if (mpu.testConnection()) {
-    mpu.initialize(); //Initializes the IMU
-    
-      ax_offset = mpu.getXAccelOffset();
-      ay_offset = mpu.getYAccelOffset();
-      az_offset = mpu.getZAccelOffset();
-      gx_offset = mpu.getXGyroOffset();
-      gy_offset = mpu.getYGyroOffset();
-      gz_offset = mpu.getZGyroOffset();
-      
-      mpu.setXAccelOffset(ax_offset);
-      mpu.setYAccelOffset(ay_offset);
-      mpu.setZAccelOffset(az_offset);
-      mpu.setXGyroOffset(gx_offset);
-      mpu.setYGyroOffset(gy_offset);
-      mpu.setZGyroOffset(gz_offset);
-      Serial.println("Sensor Inercial configurado com sucesso.\n");
+ 
+MPU6050 mpu;
+ 
+#define OUTPUT_READABLE_YAWPITCHROLL
+ 
+#define INTERRUPT_PIN 2
+#define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
+bool blinkState = false;
+ 
+// MPU control/status vars
+bool dmpReady = false;  // set true if DMP init was successful
+uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
+uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
+uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
+uint16_t fifoCount;     // count of all bytes currently in FIFO
+uint8_t fifoBuffer[64]; // FIFO storage buffer
+ 
+// orientation/motion vars
+Quaternion q;           // [w, x, y, z]         quaternion container
+VectorInt16 aa;         // [x, y, z]            accel sensor measurements
+VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
+VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
+VectorFloat gravity;    // [x, y, z]            gravity vector
+float euler[3];         // [psi, theta, phi]    Euler angle container
+float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+ 
+//VarSpeedServo servoX;
+//VarSpeedServo servoY;
+ 
+int8_t adjustX = -7;
+int8_t adjustY = -20;
+ 
+int8_t angleX;
+int8_t angleY;
+ 
+int16_t ax, ay, az, gx, gy, gz;
+ 
+// ================================================================
+// ===               INTERRUPT DETECTION ROUTINE                ===
+// ================================================================
+ 
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+void dmpDataReady() {
+  mpuInterrupt = true;
+}
+ 
+ 
+void setup() {
+  //servoX.attach(5);
+  //servoY.attach(6);
+ 
+  // configure LED for output
+  pinMode(LED_PIN, OUTPUT);    
+   
+  // join I2C bus (I2Cdev library doesn't do this automatically)
+  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+      Wire.begin();
+      Wire.setClock(400000); // 400kHz I2C clock. Comment this line if having compilation difficulties
+  #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
+      Fastwire::setup(400, true);
+  #endif
+ 
+  // initialize serial communication
+  // (115200 chosen because it is required for Teapot Demo output, but it's
+  // really up to you depending on your project)
+  Serial.begin(115200);
+  while (!Serial); // wait for Leonardo enumeration, others continue immediately
+ 
+  // initialize device
+  Serial.println(F("Initializing I2C devices..."));
+  mpu.initialize();
+  pinMode(INTERRUPT_PIN, INPUT);
+ 
+  // verify connection
+  Serial.println(F("Testing device connections..."));
+  Serial.println(mpu.testConnection() ? F("MPU6050 connection successful") : F("MPU6050 connection failed"));
+ 
+  delay(1000);
+ 
+//  // wait for ready
+//  Serial.println(F("\nSend any character to begin DMP programming and demo: "));
+//  while (Serial.available() && Serial.read()); // empty buffer
+//  while (!Serial.available());                 // wait for data
+//  while (Serial.available() && Serial.read()); // empty buffer again
+ 
+  // load and configure the DMP
+  Serial.println(F("Initializing DMP..."));
+  devStatus = mpu.dmpInitialize();
+ 
+  // supply your own gyro offsets here, scaled for min sensitivity
+  mpu.setXGyroOffset(220);
+  mpu.setYGyroOffset(76);
+  mpu.setZGyroOffset(-85);
+  mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+ 
+  // make sure it worked (returns 0 if so)
+  if (devStatus == 0) {
+      // turn on the DMP, now that it's ready
+      Serial.println(F("Enabling DMP..."));
+      mpu.setDMPEnabled(true);
+ 
+      // enable Arduino interrupt detection
+      Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
+      attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
+      mpuIntStatus = mpu.getIntStatus();
+ 
+      // set our DMP Ready flag so the main loop() function knows it's okay to use it
+      Serial.println(F("DMP ready! Waiting for first interrupt..."));
+      dmpReady = true;
+ 
+      // get expected DMP packet size for later comparison
+      packetSize = mpu.dmpGetFIFOPacketSize();
   } else {
-    Serial.println("Erro na conexao do sensor Inercial.\n");
+      // ERROR!
+      // 1 = initial memory load failed
+      // 2 = DMP configuration updates failed
+      // (if it's going to break, usually the code will be 1)
+      Serial.print(F("DMP Initialization failed (code "));
+      Serial.print(devStatus);
+      Serial.println(F(")"));
+  }
+}
+ 
+void loop() {
+ 
+ 
+  // if programming failed, don't try to do anything
+  if (!dmpReady) return;
+ 
+  // wait for MPU interrupt or extra packet(s) available
+  while (!mpuInterrupt && fifoCount < packetSize) {
+    
+     mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+     Serial.println(ay);
+  }
+ 
+  // reset interrupt flag and get INT_STATUS byte
+  mpuInterrupt = false;
+  mpuIntStatus = mpu.getIntStatus();
+ 
+  // get current FIFO count
+  fifoCount = mpu.getFIFOCount();
+ 
+  // check for overflow (this should never happen unless our code is too inefficient)
+  if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
+      // reset so we can continue cleanly
+      mpu.resetFIFO();
+      Serial.println(F("FIFO overflow!"));
+ 
+  // otherwise, check for DMP data ready interrupt (this should happen frequently)
+  } else if (mpuIntStatus & 0x02) {
+      // wait for correct available data length, should be a VERY short wait
+      while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
+ 
+      // read a packet from FIFO
+      mpu.getFIFOBytes(fifoBuffer, packetSize);
+       
+      // track FIFO count here in case there is > 1 packet available
+      // (this lets us immediately read more without waiting for an interrupt)
+      fifoCount -= packetSize;
+       
+    // blink LED to indicate activity
+    blinkState = !blinkState;
+    digitalWrite(LED_PIN, blinkState);
   }
 }

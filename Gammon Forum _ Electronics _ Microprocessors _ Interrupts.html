@@ -1,0 +1,2389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0035)http://www.gammon.com.au/interrupts -->
+<html><!-- This document is hand-crafted in HTML by Nick Gammon --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="google-site-verification" content="KptDUaIc-O_rfvV30ttczn66Zg6fL9UWq1fVovU8RGs">
+
+<title>Gammon Forum : Electronics : Microprocessors : Interrupts</title>
+
+<meta name="description" content="Gammon Forum : Electronics : Microprocessors : Interrupts">
+<meta name="keywords" content="forum, topics, subjects">
+<link rel="alternate" type="application/rss+xml" href="http://www.gammon.com.au/rss/forum.xml" title="Forum RSS Feed">
+
+<link type="text/css" rel="stylesheet" href="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style type="text/css">
+  body {color:black; }
+  body {background-color: #F5F5F5; }
+</style>
+
+
+</head>
+
+<body>
+
+<a href="http://www.gammon.com.au/welcome.html"><img alt="[Home]" border="0" height="27" src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/home.gif" width="95"></a>
+
+<a href="http://www.gammon.com.au/downloads.htm"><img alt="[Downloads]" border="0" height="27" src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/downloads.gif" width="95"></a> 
+
+<a href="http://www.gammon.com.au/search.htm"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/search.gif" alt="[Search]" width="95" height="27" border="0"></a> 
+
+<a href="http://www.gammon.com.au/forum/"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/forum.gif" alt="[Help/forum]" width="95" height="27" border="0"></a> 
+
+<br>
+<hr>
+
+
+<style>
+@media screen and (min-width: 600px) {
+    .indented {
+        margin-left: 3em;
+        margin-right: 3em;
+    }
+}
+</style>
+
+<div class="indented"><a name="top"></a>
+
+  <form method="post" action="http://www.gammon.com.au/forum/bbshowpost.php">
+    <table border="0" width="100%">
+    <tbody><tr valign="top">
+      <td align="left">
+        <h3>Gammon Forum</h3>
+<p style="font-size:small;">
+See <a href="http://www.mushclient.com/spam">www.mushclient.com/spam</a> for dealing with forum spam.
+Please read the <a href="http://mushclient.com/faq">MUSHclient FAQ</a>! 
+</p><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/open_folder.gif" width="15" height="15" border="0" alt="[Folder]">
+&nbsp;<b><a href="http://www.gammon.com.au/forum/bbshowpost.php">Entire forum</a>
+</b><br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bar.gif" width="15" height="15" border="0" alt="-&gt;">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/open_folder.gif" width="15" height="15" border="0" alt="[Folder]">
+&nbsp;<b><a href="http://www.gammon.com.au/forum/bbshowpost.php?bbsection_id=14">Electronics</a>
+</b><br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/blank.gif" width="15" height="15" border="0" alt=".">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bar.gif" width="15" height="15" border="0" alt="-&gt;">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/open_folder.gif" width="15" height="15" border="0" alt="[Folder]">
+&nbsp;<b><a href="http://www.gammon.com.au/forum/bbshowpost.php?bbtopic_id=123">Microprocessors</a>
+</b><br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/blank.gif" width="15" height="15" border="0" alt=".">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/blank.gif" width="15" height="15" border="0" alt=".">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bar.gif" width="15" height="15" border="0" alt="-&gt;">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/open_subject.gif" width="15" height="15" border="0" alt="[Subject]">
+&nbsp;<b>Interrupts</b><br>
+      </td>
+      <td align="right">
+        <table border="0">
+          <tbody><tr align="right">
+          <td colspan="2">
+            <font size="1">
+            <a href="http://www.gammon.com.au/">Home</a>
+&nbsp;|&nbsp;
+<a href="http://www.gammon.com.au/forum/bbuserlist.php">Users</a>
+&nbsp;|&nbsp;
+<a href="http://www.gammon.com.au/forum/bbsearch.php">Search</a>
+&nbsp;|&nbsp;
+<a href="http://www.gammon.com.au/forum/bbshowpost.php?bbsection_id=4">FAQ</a>
+            </font>
+          </td>
+          </tr>
+          <tr align="right">
+          <th><font size="1">Username:</font></th>
+          <td>
+            <font size="1"><input type="text" name="username" size="20" maxlength="40" tabindex="1" value=""><br>
+            <a href="http://www.gammon.com.au/forum/bbuseredit.php" target="_blank">Register forum user name</a>
+            </font>
+         </td>
+        </tr>
+        <tr align="right">
+            <th><font size="1">Password:</font></th>
+            <td>
+            <font size="1"><input type="password" name="password" size="20" tabindex="2" maxlength="40"><br>
+            <a href="http://www.gammon.com.au/forum/bbpassword.php?action=forgot" target="_blank">Forgotten password?</a>
+            </font>
+          </td>
+        </tr>
+        <tr align="right">
+          <td colspan="2">
+          <input type="submit" value="Log on">
+          <input type="hidden" name="action" value="logon">
+          </td>
+        </tr>
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    </tbody></table>
+  <input type="hidden" name="bbsection_id" value="14">
+<input type="hidden" name="bbtopic_id" value="123">
+<input type="hidden" name="bbsubject_id" value="11488">
+</form>
+<hr>
+<table border="0" cellpadding="5" bgcolor="#CD5C5C" width="100%">
+<tbody><tr bgcolor="#CD5C5C" align="center">
+<th><font color="#FFFFFF">
+<b>Interrupts</b>
+</font></th></tr>
+</tbody></table>
+<p>
+</p><p><b>Postings by administrators only.</b></p>
+<a href="http://www.gammon.com.au/forum/bbshowpost.php?bbsubject_id=11488&amp;page=1" rel="nofollow"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/refresh.gif" alt="[Refresh]" width="13" height="16" border="0">&nbsp;Refresh page</a>
+<p></p><hr>
+<a name="reply0"></a><a name="70089"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left">Sun 08 Jan 2012 03:19 AM (UTC)<p><font size="1">Amended on Tue 25 Oct 2016 06:38 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td>This article discusses interrupts on the Arduino Uno (Atmega328) and similar processors, using the Arduino IDE. The concepts however are very general. The code examples provided should compile on the Arduino IDE (Integrated Development Environment).<br>
+<br>
+<table class="template"><tbody><tr><td>
+
+This page can be quickly reached from the link: <a href="http://www.gammon.com.au/interrupts">http://www.gammon.com.au/interrupts</a>
+
+</td></tr></tbody></table><br>
+<br>
+<div class="tip"><br>
+<b>TL;DR :</b><br>
+<br>
+When writing an Interrupt Service Routine (ISR):<br>
+<br>
+<br><ul>
+<li>Keep it <i>short</i><br>
+</li><li>Don't use delay ()<br>
+</li><li>Don't do serial prints<br>
+</li><li>Make variables shared with the main code <b>volatile</b><br>
+</li><li>Variables shared with main code may need to be protected by "critical sections" (see below)<br>
+</li><li>Don't try to turn interrupts off or on<br>
+</li></ul><br>
+</div><br>
+<br>
+<div class="heading">What are interrupts?</div><br>
+<br>
+Most processors have interrupts. Interrupts let you respond to "external" events while doing something else. For example, if you are cooking dinner you may put the potatoes on to cook for 20 minutes. Rather than staring at the clock for 20 minutes you might set a timer, and then go watch TV. When the timer rings you "interrupt" your TV viewing to do something with the potatoes.<br>
+<br>
+<div class="heading">What interrupts are NOT</div><br>
+<br>
+Interrupts are not for simply changing your mind and doing something different. For example:<br>
+<br>
+<br><ul>
+<li>I interrupted my television viewing to take a bath.<br>
+</li><li>I was reading a book when visitors arrived and interrupted me. We then went to the movies.<br>
+</li><li>The user pressed a red button to interrupt the robot walking around.<br>
+</li></ul><br>
+<br>
+The above are examples of <b>doing something different</b>. They should not be done in an interrupt routine. The most that an interrupt (service) routine might do would be to remember that the red button was pressed. This fact would then be tested in the main program loop.<br>
+<br>
+<div class="heading">Example of interrupts</div><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+const byte LED = 13;
+const byte BUTTON = 2;
+
+// Interrupt Service Routine (ISR)
+void switchPressed ()
+{
+  if (digitalRead (BUTTON) == HIGH)
+    digitalWrite (LED, HIGH);
+  else
+    digitalWrite (LED, LOW);
+}  // end of switchPressed
+
+void setup ()
+{
+  pinMode (LED, OUTPUT);  // so we can update the LED
+  digitalWrite (BUTTON, HIGH);  // internal pull-up resistor
+  attachInterrupt (digitalPinToInterrupt (BUTTON), switchPressed, CHANGE);  // attach interrupt handler
+}  // end of setup
+
+void loop ()
+{
+  // loop doing nothing 
+} 
+</code></pre></span></div><br>
+<br>
+This example shows how, even though the main loop is doing nothing, you can turn the LED on pin 13 on or off, if the switch on pin D2 is pressed.<br>
+<br>
+To test this, just connect a wire (or switch) between D2 and Ground. The internal pullup (enabled in setup) forces the pin HIGH normally. When grounded, it becomes LOW. The change in the pin is detected by a CHANGE interrupt, which causes the Interrupt Service Routine (ISR) to be called.<br>
+<br>
+In a more complicated example, the main loop might be doing something useful, like taking temperature readings, and allow the interrupt handler to detect a button being pushed.<br>
+<br>
+<div class="heading">digitalPinToInterrupt function</div><br>
+<br>
+To simplify converting interrupt vector numbers to pin numbers you can call the function <b>digitalPinToInterrupt</b>, passing a pin number. It returns the appropriate interrupt number, or NOT_AN_INTERRUPT (-1).<br>
+<br>
+For example, on the Uno, pin D2 on the board is interrupt 0 (INT0_vect from the table below).<br>
+<br>
+Thus these two lines have the same effect:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+  attachInterrupt (0, switchPressed, CHANGE);    // that is, for pin D2
+  attachInterrupt (digitalPinToInterrupt (2), switchPressed, CHANGE); 
+</code></pre></span></div><br>
+<br>
+However the second one is easier to read and more portable to different Arduino types.<br>
+<br>
+<div class="heading">Available interrupts</div><br>
+<br>
+Below is a list of interrupts, in priority order, for the Atmega328:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+ 1  Reset 
+ 2  External Interrupt Request 0  (pin D2)          (INT0_vect)
+ 3  External Interrupt Request 1  (pin D3)          (INT1_vect)
+ 4  Pin Change Interrupt Request 0 (pins D8 to D13) (PCINT0_vect)
+ 5  Pin Change Interrupt Request 1 (pins A0 to A5)  (PCINT1_vect)
+ 6  Pin Change Interrupt Request 2 (pins D0 to D7)  (PCINT2_vect)
+ 7  Watchdog Time-out Interrupt                     (WDT_vect)
+ 8  Timer/Counter2 Compare Match A                  (TIMER2_COMPA_vect)
+ 9  Timer/Counter2 Compare Match B                  (TIMER2_COMPB_vect)
+10  Timer/Counter2 Overflow                         (TIMER2_OVF_vect)
+11  Timer/Counter1 Capture Event                    (TIMER1_CAPT_vect)
+12  Timer/Counter1 Compare Match A                  (TIMER1_COMPA_vect)
+13  Timer/Counter1 Compare Match B                  (TIMER1_COMPB_vect)
+14  Timer/Counter1 Overflow                         (TIMER1_OVF_vect)
+15  Timer/Counter0 Compare Match A                  (TIMER0_COMPA_vect)
+16  Timer/Counter0 Compare Match B                  (TIMER0_COMPB_vect)
+17  Timer/Counter0 Overflow                         (TIMER0_OVF_vect)
+18  SPI Serial Transfer Complete                    (SPI_STC_vect)
+19  USART Rx Complete                               (USART_RX_vect)
+20  USART, Data Register Empty                      (USART_UDRE_vect)
+21  USART, Tx Complete                              (USART_TX_vect)
+22  ADC Conversion Complete                         (ADC_vect)
+23  EEPROM Ready                                    (EE_READY_vect)
+24  Analog Comparator                               (ANALOG_COMP_vect)
+25  2-wire Serial Interface  (I2C)                  (TWI_vect)
+26  Store Program Memory Ready                      (SPM_READY_vect)
+</code></pre></span></div><br>
+<br>
+Internal names (which you can use to set up ISR callbacks) are in brackets.<br>
+<br>
+<i>Warning: If you misspell the interrupt vector name, even by just getting the capitalization wrong (an easy thing to do) the interrupt routine <b>will not be called</b>, and you will not get a compiler error.</i><br>
+<br>
+<div class="heading">Summary of interrupts</div><br>
+<br>
+The main reasons you might use interrupts are:<br>
+<br>
+<br><ul>
+<li>To detect pin changes (eg. rotary encoders, button presses)<br>
+</li><li>Watchdog timer (eg. if nothing happens after 8 seconds, interrupt me)<br>
+</li><li>Timer interrupts - used for comparing/overflowing timers<br>
+</li><li>SPI data transfers<br>
+</li><li>I2C data transfers<br>
+</li><li>USART data transfers<br>
+</li><li>ADC conversions (analog to digital)<br>
+</li><li>EEPROM ready for use<br>
+</li><li>Flash memory ready<br>
+</li></ul><br>
+<br>
+The "data transfers" can be used to let a program do something else while data is being sent or received on the serial port, SPI port, or I2C port.<br>
+<br>
+<b>Wake the processor</b><br>
+<br>
+External interrupts, pin-change interrupts, and the watchdog timer interrupt, can also be used to wake the processor up. This can be very handy, as in sleep mode the processor can be configured to use a lot less power (eg. around 10 microamps). A rising, falling, or low-level interrupt can be used to wake up a gadget (eg. if you press a button on it), or a "watchdog timer" interrupt might wake it up periodically (eg. to check the time or temperature).<br>
+<br>
+Pin-change interrupts could be used to wake the processor if a key is pressed on a keypad, or similar.<br>
+<br>
+The processor can also be awoken by a timer interrupt (eg. a timer reaching a certain value, or overflowing) and certain other events, such as an incoming I2C message.<br>
+<br>
+<div class="heading">Enabling / disabling interrupts</div><br>
+<br>
+The "reset" interrupt cannot be disabled. However the other interrupts can be temporarily disabled by clearing the interrupt flag.<br>
+<br>
+<b>Enable interrupts</b><br>
+<br>
+You can enable interrupts with the function call "interrupts" or "sei" like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+interrupts ();  // or ...
+sei ();         // set interrupts flag
+</code></pre></span></div><br>
+<br>
+<b>Disable interrupts</b><br>
+<br>
+If you need to disable interrupts you can "clear" the interrupt flag like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+noInterrupts ();  // or ...
+cli ();           // clear interrupts flag
+</code></pre></span></div><br>
+<br>
+Either method has the same effect, using "interrupts" / "noInterrupts" is a bit easier to remember which way around they are.<br>
+<br>
+The default in the Arduino is for interrupts to be enabled. Don't disable them for long periods or things like timers won't work properly.<br>
+<br>
+<div class="heading">Why disable interrupts?</div><br>
+<br>
+There may be time-critical pieces of code that you don't want interrupted, for example by a timer interrupt.<br>
+<br>
+Also if multi-byte fields are being updated by an ISR then you may need to disable interrupts so that you get the data "atomically". Otherwise one byte may be updated by the ISR while you are reading the other one.<br>
+<br>
+For example:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+noInterrupts ();
+long myCounter = isrCounter;  // get value set by ISR
+interrupts ();
+</code></pre></span></div><br>
+<br>
+Temporarily turning off interrupts ensures that isrCounter (a counter set inside an ISR) does not change while we are obtaining its value.<br>
+<br>
+<b>Warning:</b> if you are not sure if interrupts are already on or not, then you need to save the current state and restore it afterwards. For example, the code from the millis() function does this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+unsigned long millis()
+{
+  unsigned long m;
+  <b>uint8_t oldSREG = SREG;</b>
+
+  // disable interrupts while we read timer0_millis or we might get an
+  // inconsistent value (e.g. in the middle of a write to timer0_millis)
+  cli();
+  m = timer0_millis;
+  <b>SREG = oldSREG;</b>
+
+  return m;
+}
+</code></pre></span></div><br>
+<br>
+Note the lines in bold save the current SREG (status register) which includes the interrupt flag. After we have obtained the timer value (which is 4 bytes long) we put the status register back how it was.<br>
+<br>
+<div class="tip"><br>
+<b>Tips</b><br>
+<br>
+<b>Function names</b><br>
+The functions cli/sei and the register SREG are specific to the AVR processors. If you are using other processors such as the ARM ones the functions may be slightly different.<br>
+<br>
+<b>Disabling globally vs disabling one interrupt</b><br>
+If you use cli() you disable <b>all</b> interrupts (including timer interrupts, serial interrupts, etc.).<br>
+<br>
+However if you just want to disable a <b>particular</b> interrupt then you should clear the interrupt-enable flag for that particular interrupt source. For example, for external interrupts, call detachInterrupt().<br>
+</div><br>
+<br>
+<div class="heading">What is interrupt priority?</div><br>
+<br>
+Since there are 25 interrupts (other than reset) it is possible that more than one interrupt event might occur at once, or at least, occur before the previous one is processed. Also an interrupt event might occur while interrupts are disabled.<br>
+<br>
+The priority order is the sequence in which the processor checks for interrupt events. The higher up the list, the higher the priority. So, for example, an External Interrupt Request 0 (pin D2) would be serviced before External Interrupt Request 1 (pin D3).<br>
+<br>
+<div class="heading">Can interrupts occur while interrupts are disabled?</div><br>
+<br>
+Interrupts <b>events</b> (that is, noticing the event) can occur at any time, and most are remembered by setting an "interrupt event" flag inside the processor. If interrupts are disabled, then that interrupt will be handled when they are enabled again, in priority order.<br>
+<br>
+<div class="heading">What are "volatile" variables?</div><br>
+<br>
+Variables <b>shared</b> between ISR functions and normal functions should be declared "volatile". This tells the compiler that such variables might change at any time, and thus the compiler must reload the variable whenever you reference it, rather than relying upon a copy it might have in a processor register.<br>
+<br>
+For example:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+<b>volatile</b> boolean flag;
+
+// Interrupt Service Routine (ISR)
+void isr ()
+{
+ flag = true;
+}  // end of isr
+
+void setup ()
+{
+  attachInterrupt (digitalPinToInterrupt (2), isr, CHANGE);  // attach interrupt handler
+}  // end of setup
+
+void loop ()
+{
+  if (flag)
+    {
+    // interrupt has occurred
+    }
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+<div class="heading">How do you use interrupts?</div><br>
+<br>
+<br><ul>
+<li>You write an ISR (interrupt service routine). This is called when the interrupt occurs.<br>
+</li><li>You tell the processor when you want the interrupt to fire.<br>
+</li></ul><br>
+<br>
+<b>Writing an ISR</b><br>
+<br>
+Interrupt Service Routines are functions with no arguments. Some Arduino libraries are designed to call your own functions, so you just supply an ordinary function (as in the examples above), eg.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Interrupt Service Routine (ISR)
+void pinChange ()
+{
+ flag = true;
+}  // end of pinChange
+</code></pre></span></div><br>
+<br>
+However if a library has not already provided a "hook" to an ISR you can make your own, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile char buf [100];
+volatile byte pos;
+
+// SPI interrupt routine
+<b>ISR (SPI_STC_vect)</b>
+{
+byte c = SPDR;  // grab byte from SPI Data Register
+  
+  // add to buffer if room
+  if (pos &lt; sizeof buf)
+    {
+    buf [pos++] = c;
+    }  // end of room available
+}  // end of interrupt routine SPI_STC_vect
+</code></pre></span></div><br>
+<br>
+In this case you use the "ISR" define, and supply the name of the relevant interrupt vector (from the table earlier on). In this case the ISR is handling an SPI transfer completing. (Note, some old code uses SIGNAL instead of ISR, however SIGNAL is deprecated).<br>
+<br>
+<b>Connecting an ISR to an interrupt</b><br>
+<br>
+For interrupts already handled by libraries, you just use the documented interface. For example:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+void receiveEvent (int howMany)
+ {
+  while (Wire.available () &gt; 0)
+    {
+    char c = Wire.receive ();
+    // do something with the incoming byte
+    }
+}  // end of receiveEvent
+
+void setup ()
+  {
+  <b>Wire.onReceive(receiveEvent);</b>
+  }
+</code></pre></span></div><br>
+<br>
+In this case the I2C library is designed to handle incoming I2C bytes internally, and then call your supplied function at the end of the incoming data stream. In this case receiveEvent is not strictly an ISR (it has an argument) but it is called by an inbuilt ISR.<br>
+<br>
+<br>
+Another example is the "external pin" interrupt.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Interrupt Service Routine (ISR)
+void pinChange ()
+{
+  // handle pin change here
+}  // end of pinChange
+
+void setup ()
+{
+  <b>attachInterrupt (digitalPinToInterrupt (2), pinChange, CHANGE);</b>  // attach interrupt handler for D2
+}  // end of setup
+</code></pre></span></div><br>
+<br>
+In this case the attachInterrupt function adds the function pinChange to an internal table, and in addition configures the appropriate interrupt flags in the processor.<br>
+<br>
+<b>Configuring the processor to handle an interrupt</b><br>
+<br>
+The next step, once you have an ISR, is to tell the processor that you want this particular condition to raise an interrupt.<br>
+<br>
+As an example, for External Interrupt 0 (the D2 interrupt) you could do something like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+EICRA &amp;= ~3;  // clear existing flags
+EICRA |= 2;   // set wanted flags (falling level interrupt)
+EIMSK |= 1;   // enable it
+</code></pre></span></div><br>
+<br>
+More readable would be to use the defined names, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+EICRA &amp;= ~(bit(ISC00) | bit (ISC01));  // clear existing flags
+EICRA |= bit (ISC01);    // set wanted flags (falling level interrupt)
+EIMSK |= bit (INT0);     // enable it
+</code></pre></span></div><br>
+<br>
+<br>
+EICRA (External Interrupt Control Register A) would be set according to this table from the Atmega328 datasheet (page 71). <br>
+That defines the exact type of interrupt you want:<br>
+<br>
+<br><ul>
+<li>0: The low level of INT0 generates an interrupt request (LOW interrupt).<br>
+</li><li>1: Any logical change on INT0 generates an interrupt request (CHANGE interrupt).<br>
+</li><li>2: The falling edge of INT0 generates an interrupt request (FALLING interrupt).<br>
+</li><li>3: The rising edge of INT0 generates an interrupt request (RISING interrupt).<br>
+</li></ul><br>
+<br>
+EIMSK (External Interrupt Mask Register) actually enables the interrupt.<br>
+<br>
+Fortunately you don't need to remember those numbers because attachInterrupt does that for you. However that is what is actually happening, and for other interrupts you may have to "manually" set interrupt flags.<br>
+<br>
+<div class="heading">Low-level ISRs vs. library ISRs</div><br>
+<br>
+To simplify your life some common interrupt handlers are actually inside library code (for example INT0_vect and INT1_vect) and then a more user-friendly interface is provided (eg. attachInterrupt). What attachInterrupt actually does is save the address of your wanted interrupt handler into a variable, and then call that from INT0_vect /&nbsp;INT1_vect when needed. It also sets the appropriate register flags to call the handler when required.<br>
+<br>
+<div class="heading">Can ISRs be interrupted?</div><br>
+<br>
+In short, no, not unless you want them to be.<br>
+<br>
+When an ISR is entered, <b>interrupts are disabled</b>. Naturally they must have been enabled in the first place, otherwise the ISR would not be entered. However to avoid having an ISR itself be interrupted, the processor turns interrupts off.<br>
+<br>
+When an ISR exits, then <b>interrupts are enabled again</b>. The compiler also generates code inside an ISR to save registers and status flags, so that whatever you were doing when the interrupt occurred will not be affected.<br>
+<br>
+However you <b>can</b> turn interrupts on inside an ISR if you absolutely must, eg.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Interrupt Service Routine (ISR)
+void pinChange ()
+{
+  // handle pin change here
+  interrupts ();  // allow more interrupts 
+ 
+}  // end of pinChange
+</code></pre></span></div><br>
+<br>
+Normally you would need a pretty good reason to do this, as another interrupt now could result in a recursive call to pinChange, with quite possibly undesirable results.<br>
+<br>
+<div class="heading">How long does it take to execute an ISR?</div><br>
+<br>
+According to the datasheet, the minimal amount of time to service an interrupt is 4 clock cycles (to push the current program counter onto the stack) followed by the code now executing at the interrupt vector location. This normally contains a jump to where the interrupt routine really is, which is another 3 cycles.<br>
+<br>
+Then an ISR routine (declared with the ISR define) does something like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// SPI interrupt routine
+ISR (SPI_STC_vect)
+ 118: 1f 92         push  r1   (2)    // save R1 - the "zero" register
+ 11a: 0f 92         push  r0   (2)    // save register R0
+ 11c: 0f b6         in  r0, 0x3f (1)  // get SREG (status register)
+ 11e: 0f 92         push  r0  (2)     // save SREG
+ 120: 11 24         eor r1, r1 (1)    // ensure R1 is zero
+ 122: 8f 93         push  r24  (2)
+ 124: 9f 93         push  r25  (2)
+ 126: ef 93         push  r30  (2)
+ 128: ff 93         push  r31  (2)
+{
+</code></pre></span></div><br>
+<br>
+That's another 16 cycles (the cycles are in brackets). So from the moment the interrupt occurs, to the first line of code being executed, would be 16 + 7 cycles (23 cycles), at 62.5 nS per clock cycle, that would be 1.4375 µS. That's assuming a 16 MHz clock.<br>
+<br>
+<br>
+Then to leave the ISR we have this code:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+}  // end of interrupt routine SPI_STC_vect
+ 152: ff 91         pop r31 (2)
+ 154: ef 91         pop r30 (2)
+ 156: 9f 91         pop r25 (2)
+ 158: 8f 91         pop r24 (2)
+ 15a: 0f 90         pop r0 (2)    // get old SREG
+ 15c: 0f be         out 0x3f, r0 (1)  // restore SREG
+ 15e: 0f 90         pop r0 (2)    // now put old R0 register back
+ 160: 1f 90         pop r1 (2)    // restore old value of R1
+ 162: 18 95         reti (4)      // return from interrupt, turn interrupts back on
+</code></pre></span></div><br>
+<br>
+That's another 19 clock cycles (1.1875 µS). So in total, an ISR using the ISR define will take you 2.625 µS to execute, plus whatever the code itself does.<br>
+<br>
+<br>
+However the external interrupts (where you use attachInterrupt) do a bit more, as follows:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+SIGNAL(INT0_vect) {
+ 182: 1f 92         push  r1  (2)
+ 184: 0f 92         push  r0 (2)
+ 186: 0f b6         in  r0, 0x3f (1)
+ 188: 0f 92         push  r0 (2)
+ 18a: 11 24         eor r1, r1 (1)
+ 18c: 2f 93         push  r18 (2)
+ 18e: 3f 93         push  r19 (2)
+ 190: 4f 93         push  r20 (2)
+ 192: 5f 93         push  r21 (2)
+ 194: 6f 93         push  r22 (2)
+ 196: 7f 93         push  r23 (2)
+ 198: 8f 93         push  r24 (2)
+ 19a: 9f 93         push  r25 (2)
+ 19c: af 93         push  r26 (2)
+ 19e: bf 93         push  r27 (2)
+ 1a0: ef 93         push  r30 (2)
+ 1a2: ff 93         push  r31 (2)
+  if(intFunc[EXTERNAL_INT_0]) 
+ 1a4: 80 91 00 01   lds r24, 0x0100 (2)
+ 1a8: 90 91 01 01   lds r25, 0x0101 (2)
+ 1ac: 89 2b         or  r24, r25 (2)
+ 1ae: 29 f0         breq  .+10   (2)
+    intFunc[EXTERNAL_INT_0](); 
+ 1b0: e0 91 00 01   lds r30, 0x0100 (2)
+ 1b4: f0 91 01 01   lds r31, 0x0101 (2)
+ 1b8: 09 95         icall (3)
+} 
+ 1ba: ff 91         pop r31 (2)
+ 1bc: ef 91         pop r30 (2)
+ 1be: bf 91         pop r27 (2)
+ 1c0: af 91         pop r26 (2)
+ 1c2: 9f 91         pop r25 (2)
+ 1c4: 8f 91         pop r24 (2)
+ 1c6: 7f 91         pop r23 (2)
+ 1c8: 6f 91         pop r22 (2)
+ 1ca: 5f 91         pop r21 (2)
+ 1cc: 4f 91         pop r20 (2)
+ 1ce: 3f 91         pop r19 (2)
+ 1d0: 2f 91         pop r18 (2)
+ 1d2: 0f 90         pop r0 (2)
+ 1d4: 0f be         out 0x3f, r0 (1)
+ 1d6: 0f 90         pop r0 (2)
+ 1d8: 1f 90         pop r1 (2)
+ 1da: 18 95         reti (4)
+</code></pre></span></div><br>
+<br>
+I count 82 cycles there (5.125 µS in total at 16 MHz) as overhead plus whatever is actually done in the supplied interrupt routine. That is, 2.9375 µS <b>before</b> entering your interrupt handler, and another 2.1875 µS after it returns.<br>
+<br>
+<div class="heading">How long before the processor starts entering an ISR?</div><br>
+<br>
+This various somewhat. The figures quoted above are the ideal ones where the interrupt is immediately processed. A few factors may delay that:<br>
+<br>
+<br><ul>
+<li>If the processor is asleep, there are designated "wake-up" times, which could be quite a few milliseconds, while the clock is spooled back up to speed. This time would depend on fuse settings, and how deep the sleep is.<br>
+<br>
+</li><li>If an interrupt service routine is already executing, then further interrupts cannot be entered until it either finishes, or enables interrupts itself. This is why you should keep each interrupt service routine short, as every microsecond you spend in one, you are potentially delaying the execution of another one.<br>
+<br>
+</li><li>Some code turns interrupts off. For example, calling millis() briefly turns interrupts off. Therefore the time for an interrupt to be serviced would be extended by the length of time interrupts were turned off.<br>
+<br>
+</li><li>Interrupts can only be serviced at the end of an instruction, so if a particular instruction takes three clock cycles, and has just started, then the interrupt will be delayed at least a couple of clock cycles.<br>
+<br>
+</li><li>An event that turns interrupts back on (eg. returning from an interrupt service routine) is guaranteed to execute at least one more instruction. So even if an ISR ends, and your interrupt is pending, it still has to wait for one more instruction before it is serviced.<br>
+<br>
+</li><li>Since interrupts have a priority, a higher-priority interrupt might be serviced before the interrupt you are interested in.<br>
+</li></ul><br>
+<br>
+<br>
+<div class="heading">Performance considerations</div><br>
+<br>
+Interrupts can increase performance in many situations because you can get on with the "main work" of your program without having to constantly be testing to see if switches have been pressed. Having said that, the overhead of servicing an interrupt, as discussed above, would actually be more than doing a "tight loop" polling a single input port. If you absolutely need to respond to an event within, say, a microsecond, then an interrupt would be too slow. In that case you might disable interrupts (eg. timers) and just loop looking for the pin to change. <br>
+<br>
+<br>
+<div class="heading">How are interrupts queued?</div><br>
+<br>
+There are two sorts of interrupts:<br>
+<br>
+<br><ul>
+<li>Some set a flag and they are handled in priority order, even if the event that caused them has stopped. For example, a rising, falling, or changing level interrupt on pin D2.<br>
+<br>
+</li><li>Others are only tested if they are happening "right now". For example, a low-level interrupt on pin D2.<br>
+</li></ul><br>
+<br>
+The ones that set a flag could be regarded as being queued, as the interrupt flag remains set until such time as the interrupt routine is entered, at which time the processor clears the flag. Of course, since there is only one flag, if the same interrupt condition occurs again before the first one is processed, it won't be serviced twice.<br>
+<br>
+Something to be aware of is that these flags can be set before you attach the interrupt handler. For example, it is possible for a rising or falling level interrupt on pin D2 to be "flagged", and then as soon as you do an attachInterrupt the interrupt immediately fires, even if the event occurred an hour ago. To avoid this you can manually clear the flag. For example:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+EIFR = 1;  // clear flag for interrupt 0 (D2 on Uno)
+EIFR = 2;  // clear flag for interrupt 1 (D3 on Uno)
+</code></pre></span></div><br>
+<br>
+Or, for readability:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+EIFR = bit (INTF0);  // clear flag for interrupt 0
+EIFR = bit (INTF1);  // clear flag for interrupt 1
+</code></pre></span></div><br>
+<br>
+However the "low level" interrupts are continuously checked, so if you are not careful they will keep firing, even after the interrupt has been called. That is, the ISR will exit, and then the interrupt will immediately fire again. To avoid this, you should do a detachInterrupt immediately after you know that the interrupt fired. An example of this is going into sleep mode:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+#include &lt;avr/sleep.h&gt;                  
+
+// interrupt service routine in sleep mode
+void wake ()
+{
+  sleep_disable ();         // first thing after waking from sleep:
+}  // end of wake
+
+void sleepNow ()
+{
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);   
+  sleep_enable ();          // enables the sleep bit in the mcucr register
+  attachInterrupt (digitalPinToInterrupt (2), wake, LOW);  // wake up on low level on D2
+  sleep_mode ();            // here the device is actually put to sleep!!
+  detachInterrupt (digitalPinToInterrupt (2));      // stop LOW interrupt on D2
+}  // end of sleepNow
+</code></pre></span></div><br>
+<br>
+Note that the interrupt is detached immediately after we wake up. However we should be cautious about putting the detachInterrupt actually inside the "wake" ISR, because it is possible the interrupt might fire between attaching the interrupt and going to sleep, in which case we would never wake up.<br>
+<br>
+<b>[EDIT]</b> (14th July 2013)<br>
+<br>
+<b>Correction:</b><br>
+<br>
+The improved version below solves this problem by disabling interrupts before doing the attachInterrupt call. Since you are guaranteed that one instruction will be executed after re-enabling interrupts, we are sure that the sleep_cpu call will be done before the interrupt occurs.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+#include &lt;avr/sleep.h&gt;                  
+
+// interrupt service routine in sleep mode
+void wake ()
+{
+  sleep_disable ();         // first thing after waking from sleep:
+  detachInterrupt (digitalPinToInterrupt (2));      // stop LOW interrupt on D2
+}  // end of wake
+
+void sleepNow ()
+{
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);   
+  noInterrupts ();          // make sure we don't get interrupted before we sleep
+  sleep_enable ();          // enables the sleep bit in the mcucr register
+  attachInterrupt (digitalPinToInterrupt (2), wake, LOW);  // wake up on low level on D2
+  interrupts ();           // interrupts allowed now, next instruction WILL be executed
+  sleep_cpu ();            // here the device is put to sleep
+}  // end of sleepNow
+</code></pre></span></div><br>
+<br>
+<br>
+These examples illustrates how you can save power with a LOW interrupt, because the LOW interrupt is activated even if the processor is asleep <s>(whereas the other ones - RISING, FALLING, CHANGE - are not)</s>. (<i>Amended 15 Dec 2013</i> : We now believe all four external interrupt types will wake the processor).<br>
+<br>
+<div class="tip"><br>
+<b>Tip:</b><br>
+I received this confirmation from Atmel that the datasheet is wrong about only LOW interrupts waking the processor.<br>
+<br>
+<div class="quote">
+<b>Quote:</b><br><br>
+Commented by Manoraj Gnanadhas (Atmel)<br>
+2015-01-20 06:23:36 GMT<br>
+[Recipients: Nick Gammon]<br>
+<br>
+Hello Nick,<br>
+<br>
+Our design team has confirmed that “Note-3 mentioned under Table 10-1” is a datasheet bug. So you can use any type of interrupt (Rising edge/ Falling edge / Low level / Any logical change) to wake up from sleep mode. Sorry for the inconvenience caused.<br>
+<br>
+Best Regards,<br>
+Manoraj Gnanadhas<br>
+</div><br>
+<br>
+Thus, all interrupt types will wake the processor.<br>
+</div><br>
+<br>
+<br>
+<div class="heading">Hints for writing ISRs</div><br>
+<br>
+In brief, keep them short! While an ISR is executing other interrupts cannot be processed. So you could easily miss button presses, or incoming serial communications, if you try to do too much. In particular, you should not try to do debugging "prints" inside an ISR. The time taken to do those is likely to cause more problems than they solve.<br>
+<br>
+A reasonable thing to do is set a single-byte flag, and then test that flag in the main loop function. Or, store an incoming byte from a serial port into a buffer. The inbuilt timer interrupts keep track of elapsed time by firing every time the internal timer overflows, and thus you can work out elapsed time by knowing how many times the timer overflowed.<br>
+<br>
+Remember, inside an ISR interrupts are disabled. Thus hoping that the time returned by millis() function calls will change, will lead to disappointment. It is valid to <b>obtain</b> the time that way, just be aware that the timer is not incrementing. And if you spend too long in the ISR then the timer may miss an overflow event, leading to the time returned by millis() becoming incorrect.<br>
+<br>
+A test shows that, on a 16 MHz Atmega328 processor, a call to micros() takes 3.5625 µS. A call to millis() takes 1.9375 µS. Recording (saving) the current timer value is a reasonable thing to do in an ISR. Finding the elapsed milliseconds is faster than the elapsed microseconds (the millisecond count is just retrieved from a variable). However the microsecond count is obtained by adding the current value of the Timer 0 timer (which will keep incrementing) to a saved "Timer 0 overflow count".<br>
+<br>
+<b>Warning:</b> Since interrupts are disabled inside an ISR, and since the latest version of the Arduino IDE uses interrupts for Serial reading and writing, and also for incrementing the counter used by "millis" and "delay" you should not attempt to use those functions inside an ISR. To put it another way:<br>
+<br>
+<br><ul>
+<li>Don't attempt to delay, eg: <code>delay (100);</code><br>
+</li><li>You can get the time from a call to millis, however it won't increment, so don't attempt to delay by waiting for it to increase.<br>
+</li><li>Don't do serial prints (eg. <code>Serial.println ("ISR entered");</code> )<br>
+</li><li>Don't try to do serial reading.<br>
+</li></ul><br>
+<br>
+<div class="heading">Pin change interrupts</div><br>
+<br>
+There are two ways you can detect external events on pins. The first is the special "external interrupt" pins, D2 and D3. These general discrete interrupt events, one per pin. You can get to those by using attachInterrupt for each pin. You can specify a rising, falling, changing or low-level condition for the interrupt.<br>
+<br>
+However there are also "pin change" interrupts for all pins (on the Atmega328, not necessarily all pins on other processors). These act on groups of pins (D0 to D7, D8 to D13, and A0 to A5). They are also lower priority than the external event interrupts. You could make an interrupt handler to handle changes on pins D8 to D13 like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+ISR (PCINT0_vect) 
+ {
+  // one of pins D8 to D13 has changed
+ }
+</code></pre></span></div><br>
+<br>
+Clearly extra code is needed to work out exactly which pin changed (eg. comparing it to a "before" value).<br>
+<br>
+Pin change interrupts each have an associated "mask" byte in the processor, so you could actually configure them to only react to (say) D8, D10 and D12, rather than a change to D8 to D13. However you still then need to work out which of those changed.<br>
+<br>
+<br>
+<div class="heading">Example of watchdog timer interrupt</div><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+#include &lt;avr/sleep.h&gt;
+#include &lt;avr/wdt.h&gt;
+
+#define LED 13
+
+// interrupt service routine for when button pressed
+void wake ()                            
+{
+  wdt_disable();  // disable watchdog
+}  // end of wake
+
+// watchdog interrupt
+ISR (WDT_vect) 
+{
+  wake ();
+}  // end of WDT_vect
+
+void myWatchdogEnable (const byte interval) 
+{ 
+  noInterrupts ();   // timed sequence below
+
+  MCUSR = 0;                          // reset various flags
+  WDTCSR |= 0b00011000;               // see docs, set WDCE, WDE
+  WDTCSR =  0b01000000 | interval;    // set WDIE, and appropriate delay
+  wdt_reset();
+  
+  byte adcsra_save = ADCSRA;
+  ADCSRA = 0;  // disable ADC
+  power_all_disable ();   // turn off all modules
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);   // sleep mode is set here
+  sleep_enable();
+  attachInterrupt (digitalPinToInterrupt (2), wake, LOW);   // allow grounding pin D2 to wake us
+  interrupts ();
+  sleep_cpu ();            // now goes to Sleep and waits for the interrupt
+  detachInterrupt (digitalPinToInterrupt (2));     // stop LOW interrupt on pin D2
+  
+  ADCSRA = adcsra_save;  // stop power reduction
+  power_all_enable ();   // turn on all modules
+}  // end of myWatchdogEnable
+
+void setup ()
+{
+  digitalWrite (2, HIGH);    // pull-up on button
+}  // end of setup
+
+void loop()
+{
+  pinMode (LED, OUTPUT);
+  digitalWrite (LED, HIGH);
+  delay (5000);
+  digitalWrite (LED, LOW);
+  delay (5000);
+
+  // sleep bit patterns:
+  //  1 second:  0b000110
+  //  2 seconds: 0b000111
+  //  4 seconds: 0b100000
+  //  8 seconds: 0b100001
+
+  // sleep for 8 seconds
+  myWatchdogEnable (0b100001);  // 8 seconds
+
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+The above code, running on a "bare bones" board (that is, without voltage regulator, USB interface etc.) uses the following:<br>
+<br>
+<br><ul>
+<li>With LED lit: 19.5 mA<br>
+</li><li>Awake, with LED off: 16.5 mA<br>
+</li><li>Asleep: 6 uA (0.006 mA)<br>
+</li></ul><br>
+<br>
+You can see that using the watchdog timer combined with sleep mode, you can save a considerable amount of power during times when the processor might not be needed.<br>
+<br>
+It also illustrates how you can recover from sleep in two different ways. One is with a button press (ie. you ground pin D2), the other is waking up periodically (every 8 seconds), although you could make it every 1, 2 4, or 8 seconds (or even shorter if you consult the data sheet).<br>
+<br>
+<i>Warning:</i> after being woken the processor might need a short time to stabilize its clock. For example, you may see "garbage" on a serial comms port while things are synchronizing. If this is a problem you may want to build in a short delay after being woken.<br>
+<br>
+<b>Note re brownout detection:</b> The figures measured above are with brownout detection disabled. To generate a reference voltage for the brownout detection takes a bit of current. With it enabled, the sleep mode uses closer to 70 uA (not 6 uA). One way of turning off the brownout detection is to use avrdude from the command line, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+avrdude -c usbtiny -p m328p -U efuse:w:0x07:m
+</code></pre></span></div><br>
+<br>
+That sets the "efuse" (extended fuse) to be 7, which disables brownout detection. This example assumes you are using the USBtinyISP programmer board.<br>
+<br>
+<br>
+<div class="heading">You are probably using interrupts anyway ...</div><br>
+<br>
+A "normal" Arduino environment already is using interrupts, even if you don't personally attempt to. The millis() and micros() function calls make use of the "timer overflow" feature. One of the internal timers (timer 0) is set up to interrupt roughly 1000 times a second, and increment an internal counter which effectively becomes the millis() counter. There is a bit more to it than that, as adjustment is made for the exact clock speed.<br>
+<br>
+Also the hardware serial library uses interrupts to handle incoming serial data (and in the more recent library versions, outgoing serial data as well). This is very useful as your program can be doing other things while the interrupts are firing, and filling up an internal buffer. Then when you check Serial.available() you can find out what, if anything, has been placed in that buffer.<br>
+<br>
+<br>
+<div class="heading">Executing the next instruction after enabling interrupts</div><br>
+<br>
+After a bit of discussion and research on the Arduino forum, we have clarified exactly what happens after you enable interrupts. There are three main ways I can think of that you can enable interrupts, which were previously not enabled:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+  sei ();  // set interrupt enable flag
+  SREG |= 0x80;  // set the high-order bit in the status register
+  reti  ;   // assembler instruction "return from interrupt"
+</code></pre></span></div><br>
+<br>
+In all cases, the processor guarantees that the <b>next</b> instruction after interrupts are enabled (if they were previously disabled) will always be executed, even if an interrupt event is pending. (By "next" I mean the next one in program sequence, not necessarily the one physically following. For example, a RETI instruction jumps back to where the interrupt occurred, and then executes one more instruction).<br>
+<br>
+This lets you write code like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code> 
+  sei ();
+  sleep_cpu (); 
+</code></pre></span></div><br>
+  <br>
+If not for this guarantee, the interrupt might occur <b>before</b> the processor slept, and then it might never be awoken.<br>
+<br>
+<br>
+<div class="heading">Empty interrupts</div><br>
+<br>
+If you merely want an interrupt to wake the processor, but not do anything in particular, you can use the EMPTY_INTERRUPT define, eg.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+EMPTY_INTERRUPT (PCINT1_vect);
+</code></pre></span></div><br>
+<br>
+This simply generates a "reti" (return from interrupt) instruction. Since it doesn't try to save or restore registers this would be the fastest way to get an interrupt to wake it up.<br>
+<br>
+<br>
+<div class="heading">Read the data sheet!</div><br>
+<br>
+More information about interrupts, timers, etc. can be obtained from the data sheet for the processor.<br>
+<br>
+<code>http://atmel.com/dyn/resources/prod_documents/8271S.pdf</code></td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply1"></a><a name="70104"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=1#reply1">Reply #1</a> on Mon 09 Jan 2012 08:03 AM (UTC)<p><font size="1">Amended on Tue 25 Oct 2016 06:41 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Example code of a pump timer</div><br>
+<br>
+This was posted on the Arduino forum (by me) of an example of how to make a pump timer. The hardware consisted of a switch (the on/cancel switch) connected to D2 and a "pump time" rotary switch (not a rotary encoder) connected to pins 3 to 11. For example, if the switch was in the 3rd position you would get the pump running for 10 minutes.<br>
+<br>
+The pump was connected to pin 13 via a transistor/relay.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Pump timer
+// Author: Nick Gammon
+// Date: 7th January 2012
+// Released into the public domain.
+
+#include &lt;avr/sleep.h&gt;                  
+
+const int pumpPin = 13;       // output pin for the pump and solenoid (goes to the relay)
+const int buttonPin = 2;      // input pin (for a pushbutton switch)
+const int firstSwitch = 3;    // first switch pin for time rotary button
+const int lastSwitch = 11;    // last switch pin
+const int debounceTime = 20;  // debounce in milliseconds
+const unsigned long delayTime [] = { 2, 5, 10, 15, 20, 30, 45, 46, 120};   // Pump run times in minutes
+unsigned long startPumpTime = 0;           // when pump started
+unsigned long pumpTime;                    // how long to run pump
+volatile boolean buttonPressed;    // set when button pressed                       
+
+// interrupt service routine in sleep mode
+void wake ()
+{
+  sleep_disable ();         // first thing after waking from sleep:
+}  // end of wake
+
+// interrupt service routine when awake and button pressed
+void buttonDown ()                            
+{
+  buttonPressed = true;
+}  // end of buttonDown
+
+void sleepNow ()
+{
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);   
+  sleep_enable ();          // enables the sleep bit in the mcucr register
+  attachInterrupt (digitalPinToInterrupt (buttonPin), wake, LOW); 
+  sleep_mode ();            // here the device is actually put to sleep!!
+  detachInterrupt (digitalPinToInterrupt (buttonPin));     // stop LOW interrupt
+}  // end of sleepNow
+
+void deBounce ()
+{
+  unsigned long now = millis ();
+  do
+  {
+    // on bounce, reset time-out
+    if (digitalRead (buttonPin) == LOW)
+      now = millis ();
+  } 
+  while (digitalRead (buttonPin) == LOW ||
+    (millis () - now) &lt;= debounceTime);
+
+}  // end of deBounce
+
+void setup()
+{
+  pinMode(pumpPin, OUTPUT);               
+  digitalWrite (buttonPin, HIGH);    // pull-up on button
+  for (int i = firstSwitch; i &lt;= lastSwitch; i++) 
+    digitalWrite (i, HIGH);           // pull-up on switch
+} // end of setup
+
+void loop ()
+{
+
+  // if pump is running, see if time to turn it off
+  if (digitalRead (pumpPin) == HIGH)
+  {
+    if ((millis () - startPumpTime) &gt;= pumpTime || buttonPressed)
+    {
+      digitalWrite (pumpPin, LOW);  
+      deBounce ();
+      buttonPressed = false;
+    }
+    return;  // not time to sleep yet
+  }  // end of pump running
+
+
+  // ------ here if pump not running -----
+
+  // pump not running? sleep then
+  sleepNow ();
+
+  // pump is not running and we woke up, work out how long to run it
+
+  deBounce ();
+  pumpTime = 0;
+
+  EIFR = 1;      // cancel any existing falling interrupt (interrupt 0)
+  attachInterrupt (digitalPinToInterrupt (buttonPin), buttonDown, FALLING);   // ready for button press
+
+  for (int i = firstSwitch; i &lt;= lastSwitch; i++) 
+    if (digitalRead (i) == LOW)
+      pumpTime = delayTime [i - firstSwitch];
+
+  if (pumpTime == 0)
+    return;  // no time selected
+
+  // start pump
+  startPumpTime = millis ();
+  digitalWrite (pumpPin, HIGH);    
+
+  pumpTime *= 60000UL;  // convert minutes to milliseconds
+
+  // pumpTime = 5000;  // FOR TESTING - 5 seconds
+
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+Of interest is the deBounce function - that handles the inevitable "bounces" of switch contacts as you open or close them. Without some sort of debouncing handler you might interpret a single button press as 20 presses, making it very hard to actually do anything. <br>
+<br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/switch_bouncing.png"><br>
+<br>
+Above is an image of a switch bouncing, captured on the logic analyzer. You can see from the above, that a simple keypress might result in a dozen or so transitions. On the image each bounce is around 5 mS apart. So we really need to wait for a longer interval to elapse, in which the switch doesn't open/close again.<br>
+<br>
+The debounce handler above waits for 20 milliseconds for the switch to stop bouncing, and if the switch closes again, resets the time interval so it waits another 20 milliseconds. This seemed to work quite well.<br>
+<br>
+The code also demonstrates putting the processor to sleep if it isn't needed (eg. at midnight) so it uses less power. It also shows how the "low" interrupt can be used to wake it up, and the falling interrupt to notice if the switch is pressed while the pump is running (eg., you have watered your plants enough already).</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply2"></a><a name="70111"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=2#reply2">Reply #2</a> on Tue 10 Jan 2012 03:20 AM (UTC)<p><font size="1">Amended on Wed 04 Sep 2013 04:33 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Timer interrupts</div><br>
+<br>
+The "normal" Arduino IDE uses timer 0 to provide a "clock" being a number that is incremented, and adjusted, to give you a count per millisecond. You can read that by doing something like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+unsigned long nowMs = millis ();
+</code></pre></span></div><br>
+<br>
+You can also find a more accurate timer value by using micros (), which takes the current value from the millis counter, and adds in the current reading from timer 0 (thus correcting for "right now"). eg.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+unsigned long nowUs = micros ();
+</code></pre></span></div><br>
+<br>
+However you can make your own interrupts, say using Timer 1, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+const byte LED = 13;
+
+ISR(TIMER1_COMPA_vect)
+{
+static boolean state = false;
+  state = !state;  // toggle
+  digitalWrite (LED, state ? HIGH : LOW);
+}
+
+void setup() {
+  pinMode (LED, OUTPUT);
+  
+  // set up Timer 1
+  TCCR1A = 0;          // normal operation
+  TCCR1B = bit(WGM12) | bit(CS10);   // CTC, no pre-scaling
+  OCR1A =  999;       // compare A register value (1000 * clock speed)
+  TIMSK1 = bit (OCIE1A);             // interrupt on Compare A Match
+}  // end of setup
+
+void loop() { }
+</code></pre></span></div><br>
+<br>
+This uses CTC (Clear Timer on Compare), so it counts up to the specified value, clears the timer, and starts again. This toggles pin D13 faster than you can see (once every 62.5 µS). (It turns <u>on</u> every second toggle, that is every 125 µS, giving a frequency of 1/0.000125 = 8 KHz).<br>
+<br>
+<b>Note:</b> The counter is <i>zero-relative</i>. So if the counter is 1, then it actually counts two times the clock_speed/pre-scaler (0 and 1). So for an interval of 1000 slower than the internal clock, we need to set the counter to 999.<br>
+<br>
+<hr><br>
+<br>
+If you change the prescaler it toggles every 64 mS, slow enough for you to see it flashing. (That is, the LED lights every 128 mS, being 1/0.128 = 7.8125 Hz).<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+const byte LED = 13;
+
+ISR(TIMER1_COMPA_vect)
+{
+static boolean state = false;
+  state = !state;  // toggle
+  digitalWrite (LED, state ? HIGH : LOW);
+}
+
+void setup() {
+  pinMode (LED, OUTPUT);
+  
+  // set up Timer 1
+  TCCR1A = 0;          // normal operation
+  <b>TCCR1B = bit(WGM12) | bit(CS10) | bit (CS12);   // CTC, scale to clock / 1024</b>
+  OCR1A =  999;       // compare A register value (1000 * clock speed / 1024)
+  TIMSK1 = bit (OCIE1A);             // interrupt on Compare A Match
+} // end of setup
+
+void loop() { }
+</code></pre></span></div><br>
+<br>
+And even more simply, you can output a timer result without even using interrupts:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+const byte LED = 9;
+
+void setup() {
+  pinMode (LED, OUTPUT);
+  
+  // set up Timer 1
+  <b>TCCR1A = bit (COM1A0);  // toggle OC1A on Compare Match</b>
+  TCCR1B = bit(WGM12) | bit(CS10) | bit (CS12);   // CTC, scale to clock / 1024
+  OCR1A =  4999;       // compare A register value (5000 * clock speed / 1024)
+}  // end of setup
+
+void loop() { }
+</code></pre></span></div><br>
+<br>
+Plug an LED (and resistor in series, say 470 ohms) between D9 and Gnd, and you will see it toggle every 320 mS. (1/(16000000 / 1024) * 5000).<br>
+<br>
+More information on timers here:<br>
+<br>
+<code>http://www.avrfreaks.net/index.php?name=PNphpBB2&amp;file=viewtopic&amp;t=50106</code></td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply3"></a><a name="70133"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=3#reply3">Reply #3</a> on Fri 13 Jan 2012 01:57 AM (UTC)<p><font size="1">Amended on Sat 18 Oct 2014 09:55 PM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Ignition timing with timers and interrupts</div><br>
+<br>
+Below is another example of interrupts and timers from the Arduino forum. The basic problem was to turn something on when an interrupt occurred (eg. on pin D2) but after a delay. The code below uses an interrupt to start the process, sets a timer for 0.5 mS (as an initial delay). Then when that timer fires, the spark is turned on for a different interval (2 mS) and then when that time is up, the spark is turned off, and the process resumes.<br>
+<br>
+It's an interesting example of pin interrupts, timers and timer interrupts.<br>
+<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Timer with an ISR example
+// Author: Nick Gammon
+// Date: 13th January 2012
+// Modified: 19 October 2014
+
+#include &lt;digitalWriteFast.h&gt;
+
+const byte FIRE_SENSOR = 2;  // note this is interrupt 0
+const byte SPARKPLUG = 9;
+
+volatile unsigned int sparkDelayTime = 500;   // microseconds
+volatile unsigned int sparkOnTime = 2000;     // microseconds
+
+// allow for time taken to enter ISR (determine empirically)
+const unsigned int isrDelayFactor = 4;        // microseconds
+
+// is spark currently on?
+volatile boolean sparkOn;
+
+void activateInterrupt0 ()
+  {
+  EICRA &amp;= ~(bit(ISC00) | bit (ISC01));  // clear existing flags
+  EICRA |=  bit (ISC01);    // set wanted flags (falling level interrupt)
+  EIFR   =  bit (INTF0);    // clear flag for interrupt 0
+  EIMSK |=  bit (INT0);     // enable it
+  }  // end of activateInterrupt0
+
+void deactivateInterrupt0 ()
+  {
+  EIMSK &amp;= ~bit (INT0);     // disable it
+  }  // end of deactivateInterrupt0
+
+// interrupt for when time to turn spark on then off again
+ISR (TIMER1_COMPA_vect)
+  {
+
+  // if currently on, turn off
+  if (sparkOn)
+    {
+    digitalWriteFast (SPARKPLUG, LOW);  // spark off
+    TCCR1B = 0;                         // stop timer
+    TIMSK1 = 0;                         // cancel timer interrupt
+    activateInterrupt0 ();              // re-instate interrupts for firing time
+    }
+  else
+    // hold-off time must be up
+    {
+    digitalWriteFast (SPARKPLUG, HIGH); // spark on
+    TCCR1B = 0;                         // stop timer
+    TCNT1 = 0;                          // count back to zero
+    TCCR1B = bit(WGM12) | bit(CS11);    // CTC, scale to clock / 8
+    // time before timer fires (zero relative)
+    // multiply by two because we are on a prescaler of 8
+    OCR1A = (sparkOnTime * 2) - (isrDelayFactor * 2) - 1;     
+    }
+    
+  sparkOn = !sparkOn;                  // toggle
+
+  }  // end of TIMER1_COMPA_vect
+
+// ISR for when to fire
+ISR (INT0_vect)
+  {
+  sparkOn = false;                  // make sure flag off just in case
+
+  // set up Timer 1
+  TCCR1A = 0;                       // normal mode
+  TCNT1 = 0;                        // count back to zero
+  TCCR1B = bit(WGM12) | bit(CS11);  // CTC, scale to clock / 8
+  // time before timer fires - zero relative
+  // multiply by two because we are on a prescaler of 8
+  OCR1A = (sparkDelayTime * 2) - (isrDelayFactor * 2) - 1; 
+  TIMSK1 = bit (OCIE1A);            // interrupt on Compare A Match
+
+  deactivateInterrupt0 ();          // no more interrupts yet
+  } // end of ISR (INT0_vect)
+
+void setup() 
+  {
+  TCCR1A = 0;  // normal mode
+  TCCR1B = 0;  // stop timer
+  TIMSK1 = 0;  // cancel timer interrupt
+
+  pinMode (SPARKPLUG, OUTPUT);
+  pinMode (FIRE_SENSOR, INPUT_PULLUP);
+  
+  activateInterrupt0 ();
+  }  // end of setup
+
+void loop() 
+  { 
+  // read sensors, compute time to fire spark
+  
+  if (false)  // if we need to change the time, insert condition here ...
+    {
+    noInterrupts ();        // atomic change of the time amount
+    sparkDelayTime = 500;   // delay before spark in microseconds
+    sparkOnTime = 2000;     // spark on time in microseconds
+    interrupts ();
+    }
+  }  // end of loop
+</code></pre></span></div><br>
+<br>
+The graphic shows (ignore the switch bounce) that after the switch is closed there is a delay of 500 µS (between the green flags) and then a delay of 1999 µS while the spark is "on".<br>
+<br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/Arduino_forum_273225.png"><br>
+<br>
+<b>[EDIT]</b> Changes made on 19th October 2014.<br>
+<br>
+The sketch uses the digitalwritefast library to do quick writes to the spark pin. It also uses the ISR (INT0_vect) function rather than attachInterrupt, because attachInterrupt takes longer to run.<br>
+<br>
+<a href="https://code.google.com/p/digitalwritefast/">https://code.google.com/p/digitalwritefast/</a><br>
+<br>
+There is a tweaking figure of 4 µS (isrDelayFactor) which you can determine empirically (by measuring) to compensate for the few microseconds that it takes to enter the ISR. By subtracting that from the required timer interval, the timing is more accurate.</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply4"></a><a name="70147"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=4#reply4">Reply #4</a> on Sat 14 Jan 2012 09:02 PM (UTC)<p><font size="1">Amended on Tue 25 Oct 2016 06:42 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Camera shutter speed example</div><br>
+<br>
+This example detects how long a camera shutter is open by using a change interrupt. At the first transition it gets the time, and at the second one it gets the new time. <br>
+<br>
+Then the main loop shows the difference.<br>
+<br>
+Of course this general concept could be applied to anything where you want to time a brief pulse. Tested down to a 50 µS pulse, but it could probably go a bit shorter, as it takes around 5 µS to enter and leave an ISR.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Camera shutter speed timer
+// Author: Nick Gammon
+// Date: 15th January 2012
+
+volatile boolean started;
+volatile unsigned long startTime;
+volatile unsigned long endTime;
+
+// interrupt service routine
+void shutter ()
+{
+  if (started)  
+    endTime = micros ();
+  else 
+    startTime = micros ();
+
+  started = !started;
+
+} // end of shutter
+
+void setup ()
+{
+  Serial.begin (115200);
+  Serial.println ("Shutter test ...");
+  attachInterrupt (digitalPinToInterrupt (2), shutter, CHANGE);
+}  // end of setup
+
+
+void loop ()
+{
+
+  if (endTime)
+  {
+    Serial.print ("Shutter open for ");
+    Serial.print (endTime - startTime);
+    Serial.println (" microseconds.");
+    endTime = 0; 
+  }  
+
+} // end of loop
+</code></pre></span></div><br>
+<br>
+<hr><br>
+<br>
+<br>
+<div class="heading">Robot race timer example</div><br>
+<br>
+Another example uses a laser beam to shine on a LDR (light dependent resistor). The laser is so powerful this simple circuit seemed to work OK:<br>
+<br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/Arduino_forum_89774.png"><br>
+<br>
+The sketch below times intervals between RISING interrupts (the resistance goes up when less light shines on the LDR):<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Robot race timer
+// Author: Nick Gammon
+// Date: 1st February 2012
+
+unsigned long lastTriggerTime;
+volatile unsigned long triggerTime;
+volatile boolean triggered;
+
+void isr () 
+{
+  // wait until we noticed last one
+  if (triggered)
+    return;
+
+  triggerTime = micros ();
+  triggered = true;
+}  // end of isr
+
+void setup() 
+{
+  digitalWrite (2, HIGH);  // pull-up
+  attachInterrupt(digitalPinToInterrupt (2), isr, RISING);   
+  Serial.begin (115200);
+  Serial.println ("Started timing ...");  
+}  // end of setup
+
+void loop() 
+{
+  if (!triggered)
+    return;
+  
+  unsigned long elapsed = triggerTime - lastTriggerTime;
+  
+  if (elapsed &lt; 1000000L)
+    {
+    triggered = false;
+    return;  // ignore if less than a second
+    }
+    
+  lastTriggerTime = triggerTime;
+  triggered = false;  // re-arm for next time
+  
+  Serial.print ("Took: ");
+  Serial.print (elapsed);
+  Serial.print (" microseconds. ");
+  
+  unsigned long minutes, seconds, ms;
+  
+  minutes = elapsed / (1000000L * 60);
+  elapsed -= minutes * (1000000L * 60);
+  
+  seconds = elapsed / 1000000L;
+  elapsed -= seconds * 1000000L;
+  
+  ms = elapsed / 1000;
+  elapsed -= ms * 1000;
+  
+  Serial.print (minutes);
+  Serial.print ("m ");
+  Serial.print (seconds);
+  Serial.print ("s ");
+  Serial.print (ms);
+  Serial.println ("ms.");
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+Example output:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+Started timing ...
+Took: 3375112 microseconds. 0m 3s 375ms.
+Took: 1577852 microseconds. 0m 1s 577ms.
+Took: 1267868 microseconds. 0m 1s 267ms.
+Took: 1293936 microseconds. 0m 1s 293ms.
+Took: 2013680 microseconds. 0m 2s 13ms.
+Took: 3785196 microseconds. 0m 3s 785ms.
+Took: 12562240 microseconds. 0m 12s 562ms.
+</code></pre></span></div><br>
+<br>
+<br>
+I shone a cheap 1 mW laser pointer onto the LDR. The resistance is low with the light on it (I read about 1.9V on pin D2) which registers as a LOW input. When you break the beam the resistance is high and the pin gets about 3V (being a HIGH). Thus the beam is broken on a RISING interrupt.<br>
+<br>
+The code times the intervals between rising interrupts and reports them to the serial monitor. Of course you could use a LCD or something. There is a test for short intervals (which might be the light passing through a part of the robot) so that if the time is less than a second it doesn't start timing again.</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply5"></a><a name="70827"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=5#reply5">Reply #5</a> on Wed 18 Apr 2012 09:00 PM (UTC)<p><font size="1">Amended on Wed 04 Sep 2013 04:33 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Read the Analog-to-Digital converter asynchronously</div><br>
+<br>
+The code example below demonstrates reading the ADC converter (pin A0 in this case) whilst doing something else at the same time.<br>
+<br>
+Each ADC conversion takes around 104 uS, and since that would be 1664 clock cycles (something like 832 instructions) it would be useful to do something (like process the previous reading) while you are doing it.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+const byte adcPin = 0;
+volatile int adcReading;
+volatile boolean adcDone;
+boolean adcStarted;
+
+void setup ()
+{
+  Serial.begin (115200);
+  // set the analog reference (high two bits of ADMUX) and select the
+  // channel (low 4 bits).  this also sets ADLAR (left-adjust result)
+  // to 0 (the default).
+  ADMUX = bit (REFS0) | (adcPin &amp; 0x07);
+
+}  // end of setup
+
+// ADC complete ISR
+ISR (ADC_vect)
+  {
+  byte low, high;
+  
+  // we have to read ADCL first; doing so locks both ADCL
+  // and ADCH until ADCH is read.  reading ADCL second would
+  // cause the results of each conversion to be discarded,
+  // as ADCL and ADCH would be locked when it completed.
+  low = ADCL;
+  high = ADCH;
+
+  adcReading = (high &lt;&lt; 8) | low;
+  adcDone = true;  
+  }  // end of ADC_vect
+  
+void loop ()
+{
+  // if last reading finished, process it
+  if (adcDone)
+    {
+    adcStarted = false;
+
+    // do something with the reading, for example, print it
+    Serial.println (adcReading);
+    delay (500);
+
+    adcDone = false;
+    }
+    
+  // if we aren't taking a reading, start a new one
+  if (!adcStarted)
+    {
+    adcStarted = true;
+    // start the conversion
+    ADCSRA |= bit (ADSC) | bit (ADIE);
+    }    
+  
+  // do other stuff here
+
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+Once the reading has started you continue to execute the main loop, checking to see if it completed in the ISR. Once it does you can process it, print it, or whatever.<br>
+<br>
+<br>
+<div class="heading">Sleep during ADC conversion</div><br>
+<br>
+Another approach is to go to sleep during the reading. In this case, of course, you cannot do other things, but being asleep reduces digital noise inside the chip, leading to a better analog conversion. The code below is similar to the above, but adds in a "SLEEP_MODE_ADC" sleep for a better conversion. <br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// Example of taking ADC reading while asleep
+// Author: Nick Gammon
+// Date: 23 June 2012
+
+#include &lt;avr/sleep.h&gt;
+
+const byte adcPin = 0;
+volatile int adcReading;
+volatile boolean adcDone;
+boolean adcStarted;
+
+void setup ()
+{
+  Serial.begin (115200);
+  // set the analog reference (high two bits of ADMUX) and select the
+  // channel (low 4 bits).  this also sets ADLAR (left-adjust result)
+  // to 0 (the default).
+  ADMUX = bit (REFS0) | (adcPin &amp; 0x07);
+
+}  // end of setup
+
+// ADC complete ISR
+ISR (ADC_vect)
+  {
+  byte low, high;
+  
+  // we have to read ADCL first; doing so locks both ADCL
+  // and ADCH until ADCH is read.  reading ADCL second would
+  // cause the results of each conversion to be discarded,
+  // as ADCL and ADCH would be locked when it completed.
+  low = ADCL;
+  high = ADCH;
+
+  adcReading = (high &lt;&lt; 8) | low;
+  adcDone = true;  
+  }  // end of ADC_vect
+  
+void loop ()
+{
+  // if last reading finished, process it
+  if (adcDone)
+    {
+    adcStarted = false;
+
+    // do something with the reading, for example, print it
+    Serial.println (adcReading);
+    delay (500);
+
+    adcDone = false;
+    }
+    
+  // if we aren't taking a reading, start a new one
+  if (!adcStarted)
+    {
+    adcStarted = true;
+    // start the conversion
+    ADCSRA |= bit (ADSC) | bit (ADIE);
+    
+    set_sleep_mode (SLEEP_MODE_ADC);    // sleep during sample
+    sleep_mode (); 
+ 
+    }    
+  
+  // do other stuff here
+
+}  // end of loop
+</code></pre></span></div><br>
+<br>
+Also consider putting a 0.1 uF capacitor between the AREF and GND pins (adjacent to each other on the Uno board) to reduce noise in the analog reference voltage.</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply6"></a><a name="70885"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=6#reply6">Reply #6</a> on Sun 29 Apr 2012 06:42 AM (UTC)<p><font size="1">Amended on Sat 30 Aug 2014 05:11 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Pin Change Interrupts</div><br>
+<br>
+Pin change interrupts let you detect changes to any of the Arduino pins. However they are a bit more fiddly to use than the external interrupts because they are grouped into batches. So if the interrupt fires you have to work out in your own code exactly which pin caused the interrupt.<br>
+<br>
+Example code:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+ISR (PCINT0_vect)
+ {
+ // handle pin change interrupt for D8 to D13 here
+ }  // end of PCINT0_vect
+
+ISR (PCINT1_vect)
+ {
+ // handle pin change interrupt for A0 to A5 here
+ }  // end of PCINT1_vect
+
+ISR (PCINT2_vect)
+ {
+ // handle pin change interrupt for D0 to D7 here
+ }  // end of PCINT2_vect
+
+
+void setup ()
+  { 
+  // pin change interrupt (example for D9)
+  PCMSK0 |= bit (PCINT1);  // want pin 9
+  PCIFR  |= bit (PCIF0);   // clear any outstanding interrupts
+  PCICR  |= bit (PCIE0);   // enable pin change interrupts for D8 to D13
+  }
+</code></pre></span></div><br>
+<br>
+To handle a pin change interrupt you need to:<br>
+<br>
+<br><ul>
+<li>Specify which pin in the group. This is the PCMSKn variable (where n is 0, 1 or 2 from the table below). You can have interrupts on more than one pin.<br>
+</li><li>Enable the appropriate group of interrupts (0, 1 or 2)<br>
+</li><li>Supply an interrupt handler as shown above<br>
+</li></ul><br>
+<br>
+<div class="heading">Table of pins -&gt; pin change names / masks</div><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+D0	  PCINT16 (PCMSK2 / PCIF2 / PCIE2)
+D1	  PCINT17 (PCMSK2 / PCIF2 / PCIE2)
+D2	  PCINT18 (PCMSK2 / PCIF2 / PCIE2)
+D3	  PCINT19 (PCMSK2 / PCIF2 / PCIE2)
+D4	  PCINT20 (PCMSK2 / PCIF2 / PCIE2)
+D5	  PCINT21 (PCMSK2 / PCIF2 / PCIE2)
+D6	  PCINT22 (PCMSK2 / PCIF2 / PCIE2)
+D7	  PCINT23 (PCMSK2 / PCIF2 / PCIE2)
+D8	  PCINT0  (PCMSK0 / PCIF0 / PCIE0)
+D9	  PCINT1  (PCMSK0 / PCIF0 / PCIE0)
+D10	  PCINT2  (PCMSK0 / PCIF0 / PCIE0)
+D11	  PCINT3  (PCMSK0 / PCIF0 / PCIE0)
+D12	  PCINT4  (PCMSK0 / PCIF0 / PCIE0)
+D13	  PCINT5  (PCMSK0 / PCIF0 / PCIE0)
+A0	  PCINT8  (PCMSK1 / PCIF1 / PCIE1)
+A1	  PCINT9  (PCMSK1 / PCIF1 / PCIE1)
+A2	  PCINT10 (PCMSK1 / PCIF1 / PCIE1)
+A3	  PCINT11 (PCMSK1 / PCIF1 / PCIE1)
+A4	  PCINT12 (PCMSK1 / PCIF1 / PCIE1)
+A5	  PCINT13 (PCMSK1 / PCIF1 / PCIE1)
+</code></pre></span></div><br>
+<br>
+<div class="heading">Interrupt handler processing</div><br>
+<br>
+The interrupt handler would need to work out which pin caused the interrupt if the mask specifies more than one (eg. if you wanted interrupts on D8/D9/D10). To do this you would need to store the previous state of that pin, and work out (by doing a digitalRead or similar) if this particular pin had changed.<br>
+<br>
+<div class="heading">Example of waking from sleep with a Pin Change Interrupt</div><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+#include &lt;avr/sleep.h&gt;
+
+const byte LEDLOOP = 8;
+const byte LEDWAKE = 9;
+
+ISR (PCINT1_vect)
+ {
+ // handle pin change interrupt for A0 to A5 here
+ 
+ // toggle LED
+ digitalWrite (LEDWAKE, !digitalRead (LEDWAKE));
+ }  // end of PCINT1_vect
+
+void setup () 
+  {
+  pinMode (LEDWAKE, OUTPUT);
+  pinMode (LEDLOOP, OUTPUT);
+  digitalWrite (A0, HIGH);  // enable pull-up
+  
+  // pin change interrupt
+  PCMSK1 |= bit (PCINT8);  // want pin A0
+  PCIFR  |= bit (PCIF1);   // clear any outstanding interrupts
+  PCICR  |= bit (PCIE1);   // enable pin change interrupts for A0 to A5
+  
+  }  // end of setup
+
+void loop () 
+{
+  
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
+  sleep_mode ();  
+
+  // flash to indicate we got out of sleep
+  digitalWrite (LEDLOOP, HIGH);
+  delay (100);
+  digitalWrite (LEDLOOP, LOW);
+  delay (100);
+  
+  } // end of loop
+</code></pre></span></div></td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply7"></a><a name="71093"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=7#reply7">Reply #7</a> on Fri 01 Jun 2012 11:06 PM (UTC)<p><font size="1">Amended on Sat 25 Jul 2015 02:38 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Critical sections ... accessing volatile variables</div><br>
+<br>
+There are some subtle issues regarding variables which are shared between interrupt service routines (ISRs) and the main code (that is, the code not in an ISR).<br>
+<br>
+Since an ISR can fire at any time when interrupts are enabled, you need to be cautious about accessing such shared variables, as they may be being updated at the very moment you access them.<br>
+<br>
+<hr><br>
+<br>
+<b>First ... when do you use "volatile" variables?</b><br>
+<br>
+A variable should only be marked volatile if it is used both inside an ISR, and outside one.<br>
+<br>
+<br><ul>
+<li>Variables <b>only</b> used outside an ISR should <b>not</b> be volatile.<br>
+</li><li>Variables <b>only</b> used inside an ISR should <b>not</b> be volatile.<br>
+</li><li>Variables used both inside and outside an ISR <b>should</b> be volatile.<br>
+</li></ul><br>
+<br>
+eg.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+<b>volatile</b> int counter;
+</code></pre></span></div><br>
+<br>
+Marking a variable as volatile tells the compiler to not "cache" the variables contents into a processor register, but always read it from memory, when needed. This may slow down processing, which is why you don't just make every variable volatile, when not needed.<br>
+<br>
+<hr><br>
+<br>
+<b>Atomic access</b><br>
+<br>
+Consider this code:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile byte count;
+
+ISR (TIMER1_OVF_vect)
+  {
+  count = 10;
+  }
+
+void setup ()
+  {
+  }
+
+void loop () 
+  {
+  count++;
+  }
+</code></pre></span></div><br>
+<br>
+The code generated for count++ (add 1 to count) is this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+ 14c:	80 91 00 02 	lds	r24, 0x0200
+ 150:	8f 5f       	subi	r24, 0xFF     &lt;&lt;---- problem if interrupt occurs before this is executed
+ 152:	80 93 00 02 	sts	0x0200, r24   &lt;&lt;---- problem if interrupt occurs before this is executed
+</code></pre></span></div><br>
+<br>
+(Note that it adds 1 by subtracting -1).<br>
+<br>
+There are two danger points here, as marked. If the interrupt fires after the lds (load register 24 with the variable "count"), but before the sts (store back into the variable "count") then the variable might be changed by the ISR (TIMER1_OVF_vect), however <b>this change is now lost</b>, because the variable in the register was used instead.<br>
+<br>
+We need to protect the shared variable by turning off interrupts briefly, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile byte count;
+
+ISR (TIMER1_OVF_vect)
+  {
+  count = 10;
+  }  // end of TIMER1_OVF_vect
+
+void setup ()
+  {
+  }  // end of setup
+
+void loop () 
+  {
+  <b>noInterrupts ();</b>
+  count++;
+  <b>interrupts ();</b>
+  } // end of loop
+</code></pre></span></div><br>
+<br>
+Now the update of "count" is done "atomically" ... that is, it cannot be interrupted.<br>
+<br>
+<hr><br>
+<br>
+<b>Multi-byte variables</b><br>
+<br>
+Let's make "count" a 2-byte variable, and see the other problem:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile unsigned int count;
+
+ISR (TIMER1_OVF_vect)
+  {
+  count++;
+  } // end of TIMER1_OVF_vect
+
+void setup ()
+  {
+  pinMode (13, OUTPUT);
+  }  // end of setup
+
+void loop () 
+  {
+  if (count &gt; 20)
+     digitalWrite (13, HIGH);
+  } // end of loop
+</code></pre></span></div><br>
+<br>
+OK, we are not changing count any more, so is there still a problem? Sadly, yes. Let's look at the generated code for the "if" statement:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+ 172:	80 91 10 02 	lds	r24, 0x0210
+ 176:	90 91 11 02 	lds	r25, 0x0211  &lt;&lt;---- problem if interrupt occurs before this is executed
+ 17a:	45 97       	sbiw	r24, 0x15	
+ 17c:	50 f0       	brcs	.+20     	
+</code></pre></span></div><br>
+<br>
+Imagine that count was 0xFFFF and was about to "wrap around" back to zero. We load 0xFF into one register, but before we load the second 0xFF the variable changes to 0x00. Now we think count is 0x00FF which is neither the value it had before (0xFFFF) or now (0x0000).<br>
+<br>
+So again we have to "protect" the access to the shared variable, like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+void loop () 
+  {
+  <b>noInterrupts ();</b>
+  if (count &gt; 20)
+     digitalWrite (13, HIGH);
+  <b>interrupts ();</b>
+  }  // end of loop
+</code></pre></span></div><br>
+<br>
+<br>
+<b>What if you are not sure interrupts are on or off?</b><br>
+<br>
+There is a final "gotcha" here. What if interrupts might be off already? Then turning them back on afterwards is a Bad Idea.<br>
+<br>
+In that case you need to save the processor status register like this:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+unsigned int getCount ()
+  {
+  unsigned int c;
+  <b>byte oldSREG = SREG;   // remember if interrupts are on or off
+ 
+  noInterrupts ();   // turn interrupts off</b>
+  c = count;         // access the shared variable
+  <b>SREG = oldSREG;    // turn interrupts back on, if they were on before</b>
+
+  return c;          // return copy of shared variable
+  }  // end of getCount
+</code></pre></span></div><br>
+<br>
+This "safe" code saves the current status of interrupts, turns them off (they may already be off), gets the shared variable into a temporary variable, turns interrupts back on - if they were on when we entered the function - and then returns the copy of the shared variable.<br>
+<br>
+<hr><br>
+<br>
+<b>Summary</b><br>
+<br>
+Code may "appear to work" even if you don't take the above precautions. That is because the chances of the interrupt occurring at the exact wrong moment is fairly low (maybe 1 in 100, depending on the code size). But sooner or later it will happen at the wrong moment, and your code will either crash, or occasionally return the wrong results. <br>
+<br>
+So for reliable code, pay attention to protecting access to shared variables.</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply8"></a><a name="73352"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=8#reply8">Reply #8</a> on Sat 27 Jul 2013 12:41 AM (UTC)</td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Interrupt names to pin mappings</div><br>
+<br>
+The various models of Arduino have somewhat confusing mappings of interrupt numbers to pins, and the correlation between attachInterrupt (0) is not always to INT0.<br>
+<br>
+The table below shows the ways they are mapped in the internal libraries:<br>
+<br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/attachInterruptPinMappings.png"><br>
+</td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply9"></a><a name="73677"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=9#reply9">Reply #9</a> on Sat 12 Oct 2013 12:50 AM (UTC)<p><font size="1">Amended on Sat 12 Oct 2013 05:09 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">ATtiny85 sleep mode and wake on pin change</div><br>
+<br>
+The sketch below illustrates putting the ATtiny85 to sleep, and then waking on a pin-change interrupt on D4 (pin 3 on the chip). The pin is put into input-pullup mode so all you have to do is ground the pin to wake the chip.<br>
+<br>
+Also see <a href="http://www.gammon.com.au/forum/?id=11497&amp;reply=6#reply6">http://www.gammon.com.au/forum/?id=11497&amp;reply=6#reply6</a> for an example of similar code which also wakes up on a watchdog timer event.<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+// ATtiny85 sleep mode, wake on pin change interrupt demo
+// Author: Nick Gammon
+// Date: 12 October 2013
+
+// ATMEL ATTINY 25/45/85 / ARDUINO
+//
+//                  +-\/-+
+// Ain0 (D 5) PB5  1|    |8  Vcc
+// Ain3 (D 3) PB3  2|    |7  PB2 (D 2) Ain1
+// Ain2 (D 4) PB4  3|    |6  PB1 (D 1) pwm1
+//            GND  4|    |5  PB0 (D 0) pwm0
+//                  +----+
+
+#include &lt;avr/sleep.h&gt;    // Sleep Modes
+#include &lt;avr/power.h&gt;    // Power management
+
+const byte LED = 3;  // pin 2
+const byte SWITCH = 4; // pin 3 / PCINT4
+
+ISR (PCINT0_vect) 
+ {
+ // do something interesting here
+ }
+ 
+void setup ()
+  {
+  pinMode (LED, OUTPUT);
+  pinMode (SWITCH, INPUT);
+  digitalWrite (SWITCH, HIGH);  // internal pull-up
+  
+  // pin change interrupt (example for D4)
+  PCMSK  |= bit (PCINT4);  // want pin D4 / pin 3
+  GIFR   |= bit (PCIF);    // clear any outstanding interrupts
+  GIMSK  |= bit (PCIE);    // enable pin change interrupts 
+  
+  }  // end of setup
+
+void loop ()
+  {
+  digitalWrite (LED, HIGH);
+  delay (500); 
+  digitalWrite (LED, LOW);
+  delay (500); 
+  goToSleep ();
+  }  // end of loop
+  
+  
+void goToSleep ()
+  {
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  ADCSRA = 0;            // turn off ADC
+  power_all_disable ();  // power off ADC, Timer 0 and 1, serial interface
+  sleep_enable();
+  sleep_cpu();                             
+  sleep_disable();   
+  power_all_enable();    // power everything back on
+  }  // end of goToSleep 
+</code></pre></span></div><br>
+<br>
+With the brownout disable turned off, the above sketch uses 500 nA of current when asleep, as predicted by the datasheet, page 183:<br>
+<br>
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/Arduino_forum_192743.png"><br>
+<br>
+Fuses were:<br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+Signature = 0x1E 0x93 0x0B 
+Processor = ATtiny85
+Flash memory size = 8192 bytes.
+LFuse = 0xE2 
+HFuse = 0xDF 
+EFuse = 0xFF 
+Lock byte = 0xFF 
+Clock calibration = 0x9A 
+</code></pre></span></div></td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<a name="reply10"></a><a name="75568"></a>
+<table border="0" cellpadding="5" width="100%">
+  <tbody><tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Posted by</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><b>Nick Gammon</b></a>
+<font size="1">&nbsp;&nbsp;Australia</font>&nbsp;&nbsp;<font size="1">(22,075 posts)</font>&nbsp;&nbsp;<font size="1"><a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/bio.gif" border="0" width="15" height="15" alt="[Biography]">&nbsp;bio</a>
+</font>&nbsp;&nbsp;<font size="1"><i>Forum Administrator</i></font></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Date</b></td>
+    <td bgcolor="#FAF0E6" align="left"><a href="http://www.gammon.com.au/forum/?id=11488&amp;reply=10#reply10">Reply #10</a> on Wed 15 Oct 2014 08:05 PM (UTC)<p><font size="1">Amended on Tue 25 Oct 2016 06:43 AM (UTC) by <a href="http://www.gammon.com.au/forum/bbshowbio.php?bbuser_id=1" target="_blank">Nick Gammon</a>
+</font></p></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top" bgcolor="#ADD8E6" align="right" width="10%"><b>Message</b></td>
+    <td bgcolor="#FAF0E6" align="left"><div class="postbody"><table width="100%"><tbody><tr><td><div class="heading">Timing an interval</div><br>
+<br>
+I have seen example code suggesting you count things for a second by turning interrupts off for a second and then on again. I don't recommend this, because for one thing, you can't do serial prints if interrupts are off.<br>
+<br>
+<b>Example (not recommended):</b><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile unsigned long events;
+const unsigned long INTERVAL = 1000;  // 1 second
+
+void eventISR ()     
+  { 
+  events++;  
+  }   // end of eventISR
+
+void setup () 
+  { 
+  Serial.begin(115200); 
+  attachInterrupt (digitalPinToInterrupt (2), eventISR, FALLING); 
+  }   // end of setup
+
+void loop ()    
+  {
+  events = 0;       // reset counter
+  interrupts ();    // allow interrupts    
+  delay (INTERVAL); // wait desired time
+  noInterrupts();   // stop interrupts
+
+  Serial.print ("I counted ");
+  Serial.println (events);
+  }  // end of loop
+</code></pre></span></div><br>
+<br>
+That may work for simple situations, but turning interrupts off means that the Serial prints won't work until they are turned on again (which they may not be in a more complex sketch).<br>
+<br>
+<br>
+It is better to use the millis() result and just detect when the time limit is up.<br>
+<br>
+<b>Improved sketch:</b><br>
+<br>
+<div class="codetag"><span class="notranslate"><pre><code>
+volatile bool counting;
+volatile unsigned long events;
+
+unsigned long startTime;
+const unsigned long INTERVAL = 1000;  // 1 second
+
+void eventISR ()
+  {
+  if (counting)
+    events++;    
+  }  // end of eventISR
+  
+void setup ()
+  {
+  Serial.begin (115200);
+  Serial.println ();
+  attachInterrupt (digitalPinToInterrupt (2), eventISR, FALLING);
+  }  // end of setup
+
+void showResults ()
+  {
+  Serial.print ("I counted ");
+  Serial.println (events);
+  }  // end of showResults
+  
+void loop ()
+  {
+  if (counting)
+    {
+    // is time up?
+    if (millis () - startTime &lt; INTERVAL)
+      return;  
+    counting = false;
+    showResults ();
+    }  // end of if
+    
+  noInterrupts ();
+  events = 0;
+  startTime = millis ();
+  EIFR = bit (INTF0);  // clear flag for interrupt 0
+  counting = true;
+  interrupts ();
+  }  // end of loop
+</code></pre></span></div><br>
+<br>
+In loop() here we wait for the interval (1 second in this case) to be up, otherwise we return, effectively doing nothing. You could of course do other things instead of just returning.<br>
+<br>
+If the time is up we display the count.<br>
+<br>
+If counting is not currently active (and presuming we want it to be active) we remember the start time, reset the counter to zero, and let it start counting up.<br>
+<br>
+That code seemed to work OK up to 100 kHz, although the counts were getting a bit inaccurate. You can do more precise timings by using the hardware counters / timers. Details here:<br>
+<br>
+<a href="http://www.gammon.com.au/timers">http://www.gammon.com.au/timers</a></td></tr><tr><td><hr>
+<font size="1" color="#808080">- Nick Gammon<br>
+<br>
+www.gammon.com.au, www.mushclient.com</font></td></tr><tr align="right"><td><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a> </font></td></tr></tbody></table>
+</div></td>
+  </tr>
+</tbody></table>
+<hr>
+<p><font size="1">
+The dates and times for posts above are shown in Universal Co-ordinated Time (UTC).</font></p>
+<p><font size="1">To show them in your local time you can join the forum, and then set the 'time correction' field in your profile to the number of hours difference between your location and UTC time.</font></p>
+<hr>
+<p><font size="1">476,823 views.</font></p>
+<p>
+</p><p><b>Postings by administrators only.</b></p>
+<a href="http://www.gammon.com.au/forum/bbshowpost.php?bbsubject_id=11488&amp;page=1" rel="nofollow"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/refresh.gif" alt="[Refresh]" width="13" height="16" border="0">&nbsp;Refresh page</a>
+<p></p><form method="post" action="http://www.gammon.com.au/forum/bbshowpost.php"> 
+<p>Go to topic: &nbsp; <select name="bbtopic_id" size="1">
+<option value="0" selected="">(Choose topic)
+</option><option value="17">Area Editor: Bug reports
+</option><option value="18">Area Editor: General
+</option><option value="19">Area Editor: News and updates
+</option><option value="20">Area Editor: Suggestions
+</option><option value="21">Area Editor: Tips and tricks
+</option><option value="104">Dawn of Time: Administration
+</option><option value="103">Dawn of Time: Configuration
+</option><option value="102">Dawn of Time: Installing/compiling the server
+</option><option value="109">Dawn of Time: New Dawn Muds Announcements
+</option><option value="105">Dawn of Time: Playing
+</option><option value="101">Dawn of Time: What is Dawn of Time (Dawn)?
+</option><option value="123">Electronics: Microprocessors
+</option><option value="124">Electronics: Operational Amplifiers
+</option><option value="11">Forum: About
+</option><option value="35">Forum: Announcements
+</option><option value="26">Forum: Mailing other users
+</option><option value="12">Forum: Problems
+</option><option value="14">Forum: Registering
+</option><option value="13">Forum: Searching
+</option><option value="15">Forum: Subscribing
+</option><option value="106">Forum: Suggestions
+</option><option value="16">Forum: Test
+</option><option value="30">Forum: Time zones / time display
+</option><option value="32">Forum software: Administration
+</option><option value="31">Forum software: Installation
+</option><option value="34">MUDs: Announcements
+</option><option value="27">MUDs: General
+</option><option value="116">MUDs: MUD Design Concepts
+</option><option value="1">MUSHclient: Announcements
+</option><option value="107">MUSHclient: Beta testing
+</option><option value="5">MUSHclient: Bug reports
+</option><option value="122">MUSHclient: Development
+</option><option value="7">MUSHclient: General
+</option><option value="120">MUSHclient: Getting Started
+</option><option value="118">MUSHclient: International
+</option><option value="3">MUSHclient: Jscript
+</option><option value="113">MUSHclient: Lua
+</option><option value="121">MUSHclient: Miniwindows
+</option><option value="33">MUSHclient: MXP and Pueblo
+</option><option value="4">MUSHclient: Perlscript
+</option><option value="108">MUSHclient: Plugins
+</option><option value="110">MUSHclient: Python
+</option><option value="6">MUSHclient: Suggestions
+</option><option value="8">MUSHclient: Tips and tricks
+</option><option value="2">MUSHclient: VBscript
+</option><option value="117">MUSHclient: Wine
+</option><option value="22">PennMUSH: Compiling the server
+</option><option value="23">PennMUSH: Running the server
+</option><option value="112">Programming: General
+</option><option value="111">Programming: STL
+</option><option value="114">Quilting: General
+</option><option value="28">ROM: Compiling the server
+</option><option value="29">ROM: Running the server
+</option><option value="115">SMAUG: Commands
+</option><option value="24">SMAUG: Compiling the server
+</option><option value="119">SMAUG: Lua
+</option><option value="25">SMAUG: Running the server
+</option><option value="36">SMAUG: SMAUG coding
+</option></select>
+&nbsp; &nbsp; <input type="submit" value="Go">&nbsp; &nbsp;
+<a href="http://www.gammon.com.au/forum/bbsearch.php">Search the forum</a>
+</p></form>
+<hr>
+<p align="right"><font size="1"><a href="http://www.gammon.com.au/interrupts#top"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/gototop.gif" alt="[Go to top]" width="15" height="15" border="0">&nbsp;top</a></font></p>
+<p style="font-size:x-small;">
+<i>Quick links:</i>
+<a href="http://www.gammon.com.au/mushclient/mushclient.htm"><b>MUSHclient</b></a>.
+MUSHclient <a href="http://www.gammon.com.au/scripts/doc.php"><b>help</b></a>.
+Forum <a href="http://www.gammon.com.au/shortcuts"><b>shortcuts</b></a>. 
+Posting <a href="http://www.gammon.com.au/templates"><b>templates</b></a>.
+Lua <a href="http://www.gammon.com.au/modules"><b>modules</b></a>.
+Lua <a href="http://www.gammon.com.au/luahelp"><b>documentation</b></a>.
+</p>
+<p style="font-size:x-small;">Information and images on this site are licensed under the <a rel="license" href="https://creativecommons.org/licenses/by/3.0/au/">Creative Commons Attribution 3.0 Australia License</a> unless stated otherwise.
+</p><p><a href="http://www.gammon.com.au/welcome.html">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/home.gif" border="0" width="95" height="27" alt="[Home]"></a>
+
+</p></div>   <!-- end of indented div -->
+
+<hr>
+<p>
+  <a href="http://www.gammon.com.au/">
+  <img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/NickGammon.gif" alt="Written by Nick Gammon - 5K" title="Written by Nick Gammon" width="224" height="30"></a>
+
+&nbsp;
+
+<!-- StackExchange profile -->
+
+<a href="https://stackexchange.com/users/6511685">
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/6511685.png" width="208" height="58" alt="profile for Nick Gammon on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Nick Gammon on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
+
+&nbsp;
+
+<a href="https://en.wikipedia.org/wiki/Same-sex_marriage"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/rainbowflag.png" alt="Marriage equality" title="Marriage equality" style=" box-shadow: 3px 3px 3px #666666;"></a>
+
+  </p>
+<p>
+Comments to: 
+<a href="http://www.gammon.com.au/support/">Gammon Software support</a>
+<br>
+<a href="http://www.gammon.com.au/rss/forum.xml"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/xml.gif" alt="[RH click to get RSS URL]" width="36" height="14" border="0"></a> 
+<a type="application/rss+xml" href="http://www.gammon.com.au/rss/forum.xml">Forum RSS feed</a> <font size="1">( https://gammon.com.au/rss/forum.xml )</font>
+</p>
+
+
+
+<p> 
+<a href="https://www.anybrowser.org/"> 
+<img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/anybrowser2.gif" alt="[Best viewed with any browser - 2K]" width="88" height="31" border="0" title="Best viewed with any browser"></a> 
+&nbsp;&nbsp;
+
+<a href="https://www.futurequest.net/"><img src="./Gammon Forum _ Electronics _ Microprocessors _ Interrupts_files/futurequest.gif" alt="[Hosted at FutureQuest]" title="Hosted at FutureQuest"> </a>
+
+
+</p>
+
+
+</body></html>
