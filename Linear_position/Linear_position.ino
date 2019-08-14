@@ -97,7 +97,7 @@ void ler_sensor_inercial() {
   }
   dt = timer - timer2;
   
-  //ay =  abs(ay);
+  ay =  abs(ay);
   
   accel_x[1] = (((float)ay)/16834)*9.8;
 
@@ -145,9 +145,10 @@ void ler_sensor_inercial() {
   Serial.print("delta ");
   Serial.println(dt);
   */
-  Serial.print(vel_x[1]);
-  Serial.print(" ");
-  Serial.println(pos_x[1]);
+  Serial.println(yprI);
+  delay(100);
+  //Serial.print(" ");
+  //Serial.println(pos_x[1]);
 }
 
 void enviar_pacote_inercial() {
