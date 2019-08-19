@@ -46,6 +46,7 @@ int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset, yprI, SI;
 volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 
 void dmpDataReady() {
+  //Serial.println("Interrupt");
   mpuInterrupt = true;
 }
 
@@ -118,6 +119,7 @@ void ler_sensor_inercial() {
       mpu.getFIFOBytes(fifoBuffer, PSDMP);
       numbPackets--;
     }
+    //Serial.println("Ler");
       enviar_pacote_inercial();
   }
 
@@ -129,25 +131,11 @@ void ler_sensor_inercial() {
  
   vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*1)/2000;
 
-  soma = soma + vel_x[1];
-
-  media = soma/n;
-
-  vel_x_zero[1] = vel_x[1] - media;
-
-  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*1)/2000;
-
-  soma1 = soma1 + pos_x[1];
-
-  media1 = soma1/n;
-
-  pos_x_zero[1] = pos_x[1] - media1;
+  pos_x[1] = pos_x[0] + ((vel_x[1] + vel_x[0])*1)/2000;
   
   accel_x[0] = accel_x[1];
   vel_x[0] = vel_x[1];
   pos_x[0] = pos_x[1];
-  vel_x_zero[0] = vel_x_zero[1];
-  n++;
 
   SI = (int) (pos_x[1]*10000);
   SH = SI / 256;
@@ -166,9 +154,12 @@ void ler_sensor_inercial() {
   Serial.print("delta ");
   Serial.println(dt);
   */
-  Serial.println(accel_x[1]);
+  
+  
+  Serial.print(vel_x[1]);
   Serial.print(" ");
-  Serial.println(pos_x[1]);
+  Serial.println(accel_x[1]);
+  
 }
 
 void enviar_pacote_inercial() {
@@ -176,4 +167,5 @@ void enviar_pacote_inercial() {
   mpu.dmpGetGravity(&gravity, &q);
   mpu.dmpGetAccel(&aRaw, fifoBuffer);
   mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
+  //Serial.println("Enviar");
 }
