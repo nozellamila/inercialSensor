@@ -11,6 +11,7 @@
 #endif
 #define DEBUG
 #define LED_PIN 13
+#define INTERRUPT_PIN 2
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
@@ -21,8 +22,8 @@
 #define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead
 
 
-uint32_t timer = 0, timer2;
-double dt;
+// MPU control/status vars
+uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
 
 //Variaveis Inercial
 MPU6050 mpu(0x68);
@@ -32,11 +33,21 @@ int numbPackets;
 // orientation/motion vars
 Quaternion q;           // [w, x, y, z]         quaternion container
 VectorFloat gravity;    // [x, y, z]            gravity vector
-float ypr[3];
-float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0}, soma = 0, soma1 = 0, media, media1, vel_x_zero[2] = {0, 0}, pos_x_zero[1] = {0}, i = 0;
-int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset, yprI, SI, n = 1, a = 0, b = 0;
+VectorInt16 a;
+VectorInt16 aRaw;
 
-int16_t ax, ay, az, gx, gy, gz;
+float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0}, soma = 0, soma1 = 0, media, media1, vel_x_zero[2] = {0, 0}, pos_x_zero[1] = {0}, n = 0;
+int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset, yprI, SI;
+
+// ================================================================
+// ===               INTERRUPT DETECTION ROUTINE                ===
+// ================================================================
+ 
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+
+void dmpDataReady() {
+  mpuInterrupt = true;
+}
 
 void setup() {
   //Sensor Inercial
@@ -50,6 +61,11 @@ void setup() {
 
   //Serial:
   Serial.begin(115200);
+  pinMode(INTERRUPT_PIN, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
+  mpuIntStatus = mpu.getIntStatus();
+  
 }
 
 void loop() {
@@ -63,6 +79,10 @@ void loop() {
 void iniciar_sensor_inercial() {
   if (mpu.testConnection()) {
     mpu.initialize(); //Initializes the IMU
+    uint8_t ret = mpu.dmpInitialize(); //Initializes the DMP
+    delay(50);
+    if (ret == 0) {
+      mpu.setDMPEnabled(true);
       //trocar
       ax_offset = mpu.getXAccelOffset();
       ay_offset = mpu.getYAccelOffset();
@@ -78,6 +98,10 @@ void iniciar_sensor_inercial() {
       mpu.setYGyroOffset(gy_offset);
       mpu.setZGyroOffset(gz_offset);
       Serial.println("Sensor Inercial configurado com sucesso.\n");
+    } else {
+      //TODO: adicionar uma forma melhor de aviso. outro led?
+      Serial.println("Erro na inicializacao do sensor Inercial!\n");
+    }
   } else {
     Serial.println("Erro na conexao do sensor Inercial.\n");
   }
@@ -88,24 +112,22 @@ void ler_sensor_inercial() {
   if (numbPackets >= 24) {
     mpu.resetFIFO();
     DEBUG_PRINT("FIFO sensor 1 overflow!\n"); //TODO: mostrar isso de alguma forma. outro led?
-  } else {
+  } 
+   else if (mpuInterrupt == true && numbPackets < 24){
     while (numbPackets > 0) {
       mpu.getFIFOBytes(fifoBuffer, PSDMP);
       numbPackets--;
     }
-    enviar_pacote_inercial();
+      enviar_pacote_inercial();
   }
-  dt = timer - timer2;
-  
-  ay =  abs(ay);
-  
-  accel_x[1] = (((float)ay)/16834)*9.8;
 
-//  if (accel_x[1] > -3 && accel_x[1] < 3){
-//    accel_x[1] = 0;
-//  }
+  // reset interrupt flag and get INT_STATUS byte
+  mpuInterrupt = false;
+  mpuIntStatus = mpu.getIntStatus();
   
-  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*dt)/2000;
+  accel_x[1] = (((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+ 
+  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*1)/2000;
 
   soma = soma + vel_x[1];
 
@@ -113,7 +135,7 @@ void ler_sensor_inercial() {
 
   vel_x_zero[1] = vel_x[1] - media;
 
-  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*dt)/2000;
+  pos_x[1] = pos_x[0] + ((vel_x_zero[1] + vel_x_zero[0])*1)/2000;
 
   soma1 = soma1 + pos_x[1];
 
@@ -126,7 +148,6 @@ void ler_sensor_inercial() {
   pos_x[0] = pos_x[1];
   vel_x_zero[0] = vel_x_zero[1];
   n++;
-  timer2 = millis();
 
   SI = (int) (pos_x[1]*10000);
   SH = SI / 256;
@@ -145,14 +166,14 @@ void ler_sensor_inercial() {
   Serial.print("delta ");
   Serial.println(dt);
   */
-  Serial.println(yprI);
-  delay(100);
-  //Serial.print(" ");
-  //Serial.println(pos_x[1]);
+  Serial.println(accel_x[1]);
+  Serial.print(" ");
+  Serial.println(pos_x[1]);
 }
 
 void enviar_pacote_inercial() {
-  timer = millis();
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-
+  mpu.dmpGetQuaternion(&q, fifoBuffer);
+  mpu.dmpGetGravity(&gravity, &q);
+  mpu.dmpGetAccel(&aRaw, fifoBuffer);
+  mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
 }
