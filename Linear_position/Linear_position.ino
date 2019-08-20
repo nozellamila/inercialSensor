@@ -127,7 +127,7 @@ void ler_sensor_inercial() {
   mpuInterrupt = false;
   mpuIntStatus = mpu.getIntStatus();
   
-  accel_x[1] = (((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81;
+  accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81)+0.11;
  
   vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*1)/2000;
 
@@ -156,9 +156,9 @@ void ler_sensor_inercial() {
   */
   
   
-  Serial.print(vel_x[1]);
-  Serial.print(" ");
-  Serial.println(accel_x[1]);
+  Serial.println(pos_x[1]*100);
+  //Serial.print(" ");
+  //Serial.println(accel_x[1]);
   
 }
 
