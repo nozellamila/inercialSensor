@@ -25,13 +25,13 @@
     #include "Wire.h"
 #endif
 
-#define FIREBASE_HOST "https://seb01-465f5.firebaseio.com/"
+#define FIREBASE_HOST "seb01-465f5.firebaseio.com"
 #define FIREBASE_AUTH "pAAbm0SufQuio0OT0uxxhBXJYtCiggSBw0llqI0o"
-#define WIFI_SSID "Figueiras"
-#define WIFI_PASSWORD "tgbmju741"
+#define WIFI_SSID "Celular Mila"
+#define WIFI_PASSWORD "12345678"
 
-// Publique a cada 30 s
-#define PUBLISH_INTERVAL 1000*30
+// Aquisição a cada 50ms
+#define PUBLISH_INTERVAL 50000
 
 #define INTERRUPT_PIN 15 // use pin 15 on ESP8266
 
@@ -88,8 +88,8 @@ void setupFirebase(){
 }
  
 void setup() {
-  pinMode(INTERRUPT_PIN, INPUT);
-    
+  
+  pinMode(INTERRUPT_PIN, INPUT);    
    
   // join I2C bus (I2Cdev library doesn't do this automatically)
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -179,7 +179,9 @@ void ler_sensor_inercial() {
   velString += vel_x[1];
   velString += ',';
 
-  if(velString.length()>10){
+ // Firebase.pushFloat("Temp", vel_x[1]);
+
+  if(velString.length()>40){
     velString.toCharArray(buffer, velString.length());
     Serial.println(buffer);
     Firebase.pushString("Temp", buffer);
