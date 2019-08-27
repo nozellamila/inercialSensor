@@ -3,6 +3,7 @@
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "MPU6050.h"
 #include <Wire.h>
+#include<TimerOne.h>
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
 // is used in I2Cdev.h
@@ -12,6 +13,8 @@
 #define DEBUG
 #define LED_PIN 13
 #define INTERRUPT_PIN 2
+
+#define TIMER_US 1000000 //1s
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
@@ -66,6 +69,9 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
   mpuIntStatus = mpu.getIntStatus();
+
+  Timer1.initialize(TIMER_US);                  // Initialise timer1
+  Timer1.attachInterrupt( timerIsr );           // attach the ISR routine here
   
 }
 
@@ -120,7 +126,7 @@ void ler_sensor_inercial() {
       numbPackets--;
     }
     //Serial.println("Ler");
-      enviar_pacote_inercial();
+    enviar_pacote_inercial();
   }
 
   // reset interrupt flag and get INT_STATUS byte
@@ -156,9 +162,9 @@ void ler_sensor_inercial() {
   */
   
   
-  Serial.println(pos_x[1]*100);
+  //Serial.print(vel_x[1]*100);
   //Serial.print(" ");
-  //Serial.println(accel_x[1]);
+  Serial.println(pos_x[1]*100);
   
 }
 
@@ -168,4 +174,11 @@ void enviar_pacote_inercial() {
   mpu.dmpGetAccel(&aRaw, fifoBuffer);
   mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
   //Serial.println("Enviar");
+}
+
+void timerIsr(){
+  //accel_x[0] = 0;
+  vel_x[0] = 0;
+  //pos_x[0] = 0;
+  //Serial.println("interrupt");
 }
