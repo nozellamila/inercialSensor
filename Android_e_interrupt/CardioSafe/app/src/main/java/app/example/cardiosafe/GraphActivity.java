@@ -31,7 +31,10 @@ import com.scichart.core.framework.UpdateSuspender;
 import com.scichart.drawing.utility.ColorUtil;
 import com.scichart.extensions.builders.SciChartBuilder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -39,8 +42,8 @@ public class GraphActivity extends AppCompatActivity {
     private DatabaseReference temperaturaRef = databaseReferencia.child("Temp");
     private DatabaseReference sinal = databaseReferencia.child("Sinal");
 
-    Integer[] array = new Integer[4];
-    Integer[] xArray = new Integer[4];
+    Float[] array = new Float[9];
+    Integer[] xArray = new Integer[9];
     int i = 0, x = 0, cont = 0;
     String data = new String();
     Boolean flag = false;
@@ -74,7 +77,7 @@ public class GraphActivity extends AppCompatActivity {
         // Add the SciChartSurface to the layout
         // chartLayout.addView(surface);
         xArray[0] = 0;
-        xArray[3] = 0;
+        xArray[8] = 0;
         // Initialize the SciChartBuilder
         SciChartBuilder.init(this);
 
@@ -89,7 +92,7 @@ public class GraphActivity extends AppCompatActivity {
 
         // Create a numeric Y axis
         final IAxis yAxis = sciChartBuilder.newNumericAxis()
-                .withAxisTitle("Amplitude").withVisibleRange(0, 110).build();
+                .withAxisTitle("Posição").withVisibleRange(0, 110).build();
 
         // Create a TextAnnotation and specify the inscription and position for it
         TextAnnotation textAnnotation = sciChartBuilder.newTextAnnotation()
@@ -130,7 +133,7 @@ public class GraphActivity extends AppCompatActivity {
 // Set FIFO capacity to 500 on DataSeries
         final int fifoCapacity = 200;
 
-        lineData = sciChartBuilder.newXyDataSeries(Integer.class, Integer.class)
+        lineData = sciChartBuilder.newXyDataSeries(Integer.class, Float.class)
                 .withFifoCapacity(fifoCapacity)
                 .build();
 
@@ -187,7 +190,7 @@ public class GraphActivity extends AppCompatActivity {
                 flag = true;
                 sinal.setValue(flag);
 
-                Log.i("Flag_init", flag_init.toString());
+                Log.i("Flag_init", flag.toString());
             }
         });
 
@@ -229,10 +232,9 @@ public class GraphActivity extends AppCompatActivity {
                                 Log.i("Thread", "entrou na thread ");
                                 lineData.append(xArray, array);
                                 surface.zoomExtents();
-
+                                xArray[0] = xArray[8];
                             }
 
-                            xArray[0] = xArray[3];
 
                            // flag = false;
                         }
@@ -270,14 +272,24 @@ public class GraphActivity extends AppCompatActivity {
 
 
  //   }
-    private void converteDados(String[] data, int contador){
-        System.out.println(contador);
-        for (int i = 0 ; i < contador ; i++){
+    private void converteDados(String[] data, int cont){
+        //System.out.println(contador);
+        for (int i = 0; (i < cont); i++){
             if (data[i] != null)
-                array[i] = Integer.valueOf(data[i]);
+                array[i] = Float.valueOf(data[i]);
             xArray[i] = xArray[0] + i;
         }
 
+      //  calculaPosicao(array);
        // flag = true;
     }
+
+    /*
+    private void calculaPosicao(ArrayList<Float> vetor){
+        float valorAnterior;
+        float valorAtual;
+
+
+    }
+*/
 }
