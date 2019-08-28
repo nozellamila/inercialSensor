@@ -31,7 +31,7 @@
 #define WIFI_PASSWORD "12345678"
 
 // Aquisição a cada 50ms
-#define PUBLISH_INTERVAL 50000
+//#define PUBLISH_INTERVAL 50
 
 #define INTERRUPT_PIN 15 // use pin 15 on ESP8266
 
@@ -41,7 +41,7 @@
 
 #define PSDMP 42 //Packet size DMP
 
-Ticker ticker;
+//Ticker ticker;
  
 MPU6050 mpu(0x68);
  
@@ -108,7 +108,7 @@ void setup() {
   setupFirebase();
 
   // Registra o ticker para publicar de tempos em tempos
-  ticker.attach_ms(PUBLISH_INTERVAL, publish);
+  //ticker.attach_ms(PUBLISH_INTERVAL, publish);
 }
  
 void loop() {
@@ -159,7 +159,7 @@ void ler_sensor_inercial() {
     mpu.resetFIFO();
     DEBUG_PRINT("FIFO sensor 1 overflow!\n"); //TODO: mostrar isso de alguma forma. outro led?
   } 
-   else if (flag == true && numbPackets < 24){
+   else if (numbPackets < 24){
     while (numbPackets > 0) {
       mpu.getFIFOBytes(fifoBuffer, PSDMP);
       numbPackets--;
@@ -167,7 +167,8 @@ void ler_sensor_inercial() {
     //Serial.println("Ler");
     enviar_pacote_inercial();
   }
-  flag = false;
+  
+  //flag = false;
 
   accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81)+0.11;
  
@@ -181,11 +182,14 @@ void ler_sensor_inercial() {
 
  // Firebase.pushFloat("Temp", vel_x[1]);
 
-  if(velString.length()>40){
+  //Serial.println(accel_x[1]);
+  
+  if(velString.length()>10){
     velString.toCharArray(buffer, velString.length());
     Serial.println(buffer);
-    Firebase.pushString("Temp", buffer);
+    //Firebase.pushString("Temp", buffer);
     velString = "";
+    vel_x[0] = 0;
  }  
 }
 
@@ -194,5 +198,6 @@ void enviar_pacote_inercial() {
   mpu.dmpGetGravity(&gravity, &q);
   mpu.dmpGetAccel(&aRaw, fifoBuffer);
   mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
-  //Serial.println("Enviar");
+  delay(50);
+  //Serial.println(a.y);
 }
