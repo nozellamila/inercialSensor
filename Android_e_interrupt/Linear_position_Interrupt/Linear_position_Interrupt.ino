@@ -31,7 +31,7 @@
 #define WIFI_PASSWORD "12345678"
 
 // Aquisição a cada 50ms
-//#define PUBLISH_INTERVAL 50
+#define PUBLISH_INTERVAL 5000
 
 #define INTERRUPT_PIN 15 // use pin 15 on ESP8266
 
@@ -41,7 +41,7 @@
 
 #define PSDMP 42 //Packet size DMP
 
-//Ticker ticker;
+Ticker ticker;
  
 MPU6050 mpu(0x68);
  
@@ -58,7 +58,7 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
  
 float accel_x[2] = {0, 0}, vel_x[2] = {0, 0};
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
-bool flag = true;
+volatile bool flag = false;
 String flag_init = "a";
 String velString;
 char buffer[41];
@@ -69,6 +69,7 @@ char buffer[41];
  
 void publish(){
   flag = true;
+  //Serial.println(flag);
 }
 
 void setupWifi(){
@@ -108,7 +109,7 @@ void setup() {
   setupFirebase();
 
   // Registra o ticker para publicar de tempos em tempos
-  //ticker.attach_ms(PUBLISH_INTERVAL, publish);
+  ticker.attach_ms(PUBLISH_INTERVAL, publish);
 }
  
 void loop() {
@@ -119,7 +120,12 @@ void loop() {
   ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
  }
  */
- ler_sensor_inercial();
+ if(flag == true){
+  //Serial.println(flag);
+  ler_sensor_inercial();
+  Serial.println(accel_x[1]);
+ }
+ //flag = false;
 }
 
 void iniciar_sensor_inercial() {
@@ -168,8 +174,9 @@ void ler_sensor_inercial() {
     enviar_pacote_inercial();
   }
   
-  //flag = false;
-
+  flag = false;
+  //Serial.println(flag);
+  
   accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81)+0.11;
  
   vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*1)/2000;
@@ -182,8 +189,7 @@ void ler_sensor_inercial() {
 
  // Firebase.pushFloat("Temp", vel_x[1]);
 
-  //Serial.println(accel_x[1]);
-  
+  /*
   if(velString.length()>10){
     velString.toCharArray(buffer, velString.length());
     Serial.println(buffer);
@@ -191,6 +197,7 @@ void ler_sensor_inercial() {
     velString = "";
     vel_x[0] = 0;
  }  
+ */
 }
 
 void enviar_pacote_inercial() {
@@ -198,6 +205,6 @@ void enviar_pacote_inercial() {
   mpu.dmpGetGravity(&gravity, &q);
   mpu.dmpGetAccel(&aRaw, fifoBuffer);
   mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
-  delay(50);
+  //delay(50);
   //Serial.println(a.y);
 }

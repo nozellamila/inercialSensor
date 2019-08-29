@@ -45,6 +45,7 @@ THE SOFTWARE.
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
+#include <Ticker.h>
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
@@ -65,6 +66,10 @@ THE SOFTWARE.
 // AD0 high = 0x69
 MPU6050 mpu;
 //MPU6050 mpu(0x69); // <-- use for AD0 high
+
+#define PUBLISH_INTERVAL 5000
+
+Ticker ticker;
 
 /* =========================================================================
    NOTE: In addition to connection 5/3.3v, GND, SDA, and SCL, this sketch
@@ -116,7 +121,7 @@ float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gra
 // not compensated for orientation, so +X is always +X according to the
 // sensor, just without the effects of gravity. If you want acceleration
 // compensated for orientation, us OUTPUT_READABLE_WORLDACCEL instead.
-//#define OUTPUT_READABLE_REALACCEL
+#define OUTPUT_READABLE_REALACCEL
 
 // uncomment "OUTPUT_READABLE_WORLDACCEL" if you want to see acceleration
 // components with gravity removed and adjusted for the world frame of
@@ -126,7 +131,7 @@ float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gra
 
 // uncomment "OUTPUT_TEAPOT_OSC" if you want output that matches the
 // format used for the InvenSense teapot demo
-#define OUTPUT_TEAPOT_OSC
+//#define OUTPUT_TEAPOT_OSC
 
 #define INTERRUPT_PIN 15 // use pin 15 on ESP8266
 
@@ -182,8 +187,10 @@ void mpu_setup()
 
     // enable Arduino interrupt detection
     Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
-    attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
-    mpuIntStatus = mpu.getIntStatus();
+    //attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
+    //mpuIntStatus = mpu.getIntStatus();
+    
+    ticker.attach_ms(PUBLISH_INTERVAL, dmpDataReady);
 
     // set our DMP Ready flag so the main loop() function knows it's okay to use it
     Serial.println(F("DMP ready! Waiting for first interrupt..."));
@@ -232,9 +239,10 @@ void mpu_loop()
   // wait for MPU interrupt or extra packet(s) available
   if (!mpuInterrupt && fifoCount < packetSize) return;
 
+  delay(50);
   // reset interrupt flag and get INT_STATUS byte
   mpuInterrupt = false;
-  mpuIntStatus = mpu.getIntStatus();
+  //mpuIntStatus = mpu.getIntStatus();
 
   // get current FIFO count
   fifoCount = mpu.getFIFOCount();
