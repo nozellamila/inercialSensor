@@ -16,6 +16,7 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
 #include <FirebaseArduino.h>
+#include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 #include <Ticker.h>
 
 #include "I2Cdev.h"
@@ -31,9 +32,10 @@
 #define WIFI_PASSWORD "12345678"
 
 // Aquisição a cada 50ms
-#define PUBLISH_INTERVAL 5000
+//Obs.: Aumentar muito o intervalo de aquisição (500ms por exemplo) impede a leitura dos dados
+#define PUBLISH_INTERVAL 50
 
-#define INTERRUPT_PIN 15 // use pin 15 on ESP8266
+const char DEVICE_NAME[] = "mpu6050";
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
 //CASO ISSO NAO SEJA FEITO CORRE PERIGO DA FIFO ESTOURAR
@@ -56,12 +58,10 @@ VectorInt16 a;         // [x, y, z]            accel sensor measurements
 VectorInt16 aRaw;     // [x, y, z]            gravity-free accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
  
-float accel_x[2] = {0, 0}, vel_x[2] = {0, 0};
+float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0};
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
 volatile bool flag = false;
 String flag_init = "a";
-String velString;
-char buffer[41];
  
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
@@ -73,14 +73,18 @@ void publish(){
 }
 
 void setupWifi(){
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("connecting");
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print(".");
-    delay(500);
-  }
-  Serial.println();
-  Serial.print("connected: ");
+  //WiFiManager
+  //Local intialization. Once its business is done, there is no need to keep it around
+  WiFiManager wifiManager;
+  //reset saved settings
+  //wifiManager.resetSettings();
+
+  //fetches ssid and pass from eeprom and tries to connect
+  //if it does not connect it starts an access point with the specified name
+  //and goes into a blocking loop awaiting configuration
+  wifiManager.autoConnect(DEVICE_NAME);
+
+  Serial.print(F("WiFi connected! IP address: "));
   Serial.println(WiFi.localIP());
 }
 
@@ -89,13 +93,10 @@ void setupFirebase(){
 }
  
 void setup() {
-  
-  pinMode(INTERRUPT_PIN, INPUT);    
-   
   // join I2C bus (I2Cdev library doesn't do this automatically)
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
       Wire.begin();
-      Wire.setClock(400000); // 400kHz I2C clock. Comment this line if having compilation difficulties
+      Wire.setClock(200000); // 400kHz I2C clock. Comment this line if having compilation difficulties
   #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
       Fastwire::setup(400, true);
   #endif
@@ -115,17 +116,23 @@ void setup() {
 void loop() {
 /*  
  flag_init = Firebase.getString("Sinal");
-
  if(flag_init == 'b'){  
   ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
  }
  */
+ 
  if(flag == true){
   //Serial.println(flag);
   ler_sensor_inercial();
-  Serial.println(accel_x[1]);
+  Serial.print(accel_x[1]);
+  Serial.print(" ");
+  Serial.print(vel_x[1]);
+  Serial.print(" ");
+  Serial.println(pos_x[1]);
+  flag = false;
  }
- //flag = false;
+ 
+ 
 }
 
 void iniciar_sensor_inercial() {
@@ -172,32 +179,27 @@ void ler_sensor_inercial() {
     }
     //Serial.println("Ler");
     enviar_pacote_inercial();
+    
   }
   
-  flag = false;
+  
   //Serial.println(flag);
   
   accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81)+0.11;
- 
-  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*1)/2000;
+
+  //accel_x[1] = accel_x[1] - 0.10;
+  
+  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*50)/2000;
+
+  pos_x[1] = pos_x[0] + ((vel_x[1] + vel_x[0])*50)/2000;
   
   accel_x[0] = accel_x[1];
   vel_x[0] = vel_x[1];
+  pos_x[0] = pos_x[1];
 
-  velString += vel_x[1];
-  velString += ',';
 
  // Firebase.pushFloat("Temp", vel_x[1]);
 
-  /*
-  if(velString.length()>10){
-    velString.toCharArray(buffer, velString.length());
-    Serial.println(buffer);
-    //Firebase.pushString("Temp", buffer);
-    velString = "";
-    vel_x[0] = 0;
- }  
- */
 }
 
 void enviar_pacote_inercial() {
