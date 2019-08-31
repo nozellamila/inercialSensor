@@ -33,7 +33,9 @@
 
 // Aquisição a cada 50ms
 //Obs.: Aumentar muito o intervalo de aquisição (500ms por exemplo) impede a leitura dos dados
-#define PUBLISH_INTERVAL 50
+#define READING_INTERVAL 50
+
+#define PUBLISH_INTERVAL 1000
 
 const char DEVICE_NAME[] = "mpu6050";
 
@@ -43,7 +45,9 @@ const char DEVICE_NAME[] = "mpu6050";
 
 #define PSDMP 42 //Packet size DMP
 
-Ticker ticker;
+Ticker ticker; //Controle da aquisição
+
+Ticker ticker2; //Controle do envio para o firebase
  
 MPU6050 mpu(0x68);
  
@@ -61,15 +65,19 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
 float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0};
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
 volatile bool flag = false;
-String flag_init = "a";
+volatile bool flag_init = false;
  
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
 // ================================================================
  
-void publish(){
+void reading(){
   flag = true;
   //Serial.println(flag);
+}
+
+void publish(){
+  flag_init = true;
 }
 
 void setupWifi(){
@@ -109,8 +117,12 @@ void setup() {
 
   setupFirebase();
 
-  // Registra o ticker para publicar de tempos em tempos
-  ticker.attach_ms(PUBLISH_INTERVAL, publish);
+  // Registra o ticker para ler de tempos em tempos
+  ticker.attach_ms(READING_INTERVAL, reading);
+
+  // Registra o ticker2 para publicar de tempos em tempos
+  ticker2.attach_ms(PUBLISH_INTERVAL, publish);
+  
 }
  
 void loop() {
@@ -122,16 +134,25 @@ void loop() {
  */
  
  if(flag == true){
-  //Serial.println(flag);
+  Serial.println("leia");
   ler_sensor_inercial();
-  Serial.print(accel_x[1]);
-  Serial.print(" ");
-  Serial.print(vel_x[1]);
-  Serial.print(" ");
-  Serial.println(pos_x[1]);
+  //Serial.print(accel_x[1]);
+  //Serial.print(" ");
+  //Serial.print(vel_x[1]);
+  //Serial.print(" ");
+  //Serial.println(pos_x[1]);
   flag = false;
  }
- 
+
+ if(flag_init == true){
+  Serial.println("publique");
+  //Firebase.pushFloat("Temp", pos_x[1]);
+
+  vel_x[0] = 0;
+  pos_x[0] = 0;
+
+  flag_init == false;
+ }
  
 }
 
@@ -185,9 +206,7 @@ void ler_sensor_inercial() {
   
   //Serial.println(flag);
   
-  accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81)+0.11;
-
-  //accel_x[1] = accel_x[1] - 0.10;
+  accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81);
   
   vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*50)/2000;
 
@@ -209,4 +228,20 @@ void enviar_pacote_inercial() {
   mpu.dmpGetLinearAccel(&a, &aRaw, &gravity);
   //delay(50);
   //Serial.println(a.y);
+}
+
+void calculaOffset(){
+  ax_offset = mpu.getXAccelOffset();
+  ay_offset = mpu.getYAccelOffset();
+  az_offset = mpu.getZAccelOffset();
+  gx_offset = mpu.getXGyroOffset();
+  gy_offset = mpu.getYGyroOffset();
+  gz_offset = mpu.getZGyroOffset();
+  
+  mpu.setXAccelOffset(ax_offset);
+  mpu.setYAccelOffset(ay_offset);
+  mpu.setZAccelOffset(az_offset);
+  mpu.setXGyroOffset(gx_offset);
+  mpu.setYGyroOffset(gy_offset);
+  mpu.setZGyroOffset(gz_offset);
 }
