@@ -35,8 +35,7 @@
 //Obs.: Aumentar muito o intervalo de aquisição (500ms por exemplo) impede a leitura dos dados
 #define READING_INTERVAL 50
 
-#define PUBLISH_INTERVAL 1000
-
+#define MPU_INTERVAL 1000
 const char DEVICE_NAME[] = "mpu6050";
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
@@ -47,8 +46,8 @@ const char DEVICE_NAME[] = "mpu6050";
 
 Ticker ticker; //Controle da aquisição
 
-Ticker ticker2; //Controle do envio para o firebase
- 
+Ticker ticker2; //Controle da publicação
+
 MPU6050 mpu(0x68);
  
 // MPU control/status vars
@@ -62,11 +61,13 @@ VectorInt16 a;         // [x, y, z]            accel sensor measurements
 VectorInt16 aRaw;     // [x, y, z]            gravity-free accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
  
-float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0};
+static float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0};
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
 volatile bool flag = false;
-volatile bool flag_init = false;
- 
+
+unsigned long currentMillis = 0;
+unsigned long previousMPUMillis = 0;
+
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
 // ================================================================
@@ -77,10 +78,12 @@ void reading(){
 }
 
 void publish(){
-  flag_init = true;
+  //Serial.println("publique");
+  Firebase.pushFloat("Temp", pos_x[1]);
 }
 
 void setupWifi(){
+/*  
   //WiFiManager
   //Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wifiManager;
@@ -94,6 +97,19 @@ void setupWifi(){
 
   Serial.print(F("WiFi connected! IP address: "));
   Serial.println(WiFi.localIP());
+*/
+  
+  //Segunda opção para conexão
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("connecting");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println();
+  Serial.print("connected: ");
+  Serial.println(WiFi.localIP());
+  
 }
 
 void setupFirebase(){
@@ -120,38 +136,32 @@ void setup() {
   // Registra o ticker para ler de tempos em tempos
   ticker.attach_ms(READING_INTERVAL, reading);
 
-  // Registra o ticker2 para publicar de tempos em tempos
-  ticker2.attach_ms(PUBLISH_INTERVAL, publish);
+  Serial.print(0.20);
   
+  //Registra o ticker2 para publicar de tempos em tempos
+  //ticker2.attach_ms(MPU_INTERVAL, publish);
 }
  
 void loop() {
-/*  
- flag_init = Firebase.getString("Sinal");
- if(flag_init == 'b'){  
-  ler_sensor_inercial(); //Realiza leitura e envia pacote(ou mostra) dados
- }
- */
  
  if(flag == true){
-  Serial.println("leia");
+  //Serial.println("leia");
   ler_sensor_inercial();
   //Serial.print(accel_x[1]);
   //Serial.print(" ");
   //Serial.print(vel_x[1]);
   //Serial.print(" ");
-  //Serial.println(pos_x[1]);
+  Serial.println(vel_x[1]*100);
   flag = false;
  }
-
- if(flag_init == true){
-  Serial.println("publique");
+ 
+ currentMillis = millis();
+ if (currentMillis - previousMPUMillis >= MPU_INTERVAL) {
+  previousMPUMillis = currentMillis;
   //Firebase.pushFloat("Temp", pos_x[1]);
-
+  //Serial.println("publique");
   vel_x[0] = 0;
   pos_x[0] = 0;
-
-  flag_init == false;
  }
  
 }
