@@ -36,6 +36,9 @@
 #define READING_INTERVAL 50
 
 #define MPU_INTERVAL 1000
+
+#define AMOSTRAS 25
+
 const char DEVICE_NAME[] = "mpu6050";
 
 //NOTE: Antes de usar vc deve alterar a frequenciana biblioteca mpu6050
@@ -62,8 +65,10 @@ VectorInt16 aRaw;     // [x, y, z]            gravity-free accel sensor measurem
 VectorFloat gravity;    // [x, y, z]            gravity vector
  
 static float accel_x[2] = {0, 0}, vel_x[2] = {0, 0}, pos_x[2] = {0, 0};
+static float accel[AMOSTRAS], vel[AMOSTRAS - 1], posicao;
+int i = 0;
 int ax_offset,ay_offset,az_offset,gx_offset,gy_offset,gz_offset;
-volatile bool flag = false;
+volatile bool flag = false, flag_publish = false;
 
 unsigned long currentMillis = 0;
 unsigned long previousMPUMillis = 0;
@@ -79,7 +84,7 @@ void reading(){
 
 void publish(){
   //Serial.println("publique");
-  Firebase.pushFloat("Temp", pos_x[1]);
+  //Firebase.pushFloat("Temp", pos_x[1]);
 }
 
 void setupWifi(){
@@ -151,10 +156,10 @@ void loop() {
   //Serial.print(" ");
   //Serial.print(vel_x[1]);
   //Serial.print(" ");
-  Serial.println(vel_x[1]*100);
   flag = false;
  }
- 
+
+ /*
  currentMillis = millis();
  if (currentMillis - previousMPUMillis >= MPU_INTERVAL) {
   previousMPUMillis = currentMillis;
@@ -163,7 +168,7 @@ void loop() {
   vel_x[0] = 0;
   pos_x[0] = 0;
  }
- 
+ */
 }
 
 void iniciar_sensor_inercial() {
@@ -212,22 +217,22 @@ void ler_sensor_inercial() {
     enviar_pacote_inercial();
     
   }
-  
-  
-  //Serial.println(flag);
-  
-  accel_x[1] = ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81);
-  
-  vel_x[1] = vel_x[0] + ((accel_x[1] + accel_x[0])*50)/2000;
 
-  pos_x[1] = pos_x[0] + ((vel_x[1] + vel_x[0])*50)/2000;
+  accel[i] =  ((((float)a.y - (-32768)) * (2 - (-2)) / (32768 - (-32768)) + (-2))*9.81);
+
+  //Serial.println(accel[i]);
   
-  accel_x[0] = accel_x[1];
-  vel_x[0] = vel_x[1];
-  pos_x[0] = pos_x[1];
+  i++;
 
-
- // Firebase.pushFloat("Temp", vel_x[1]);
+  if(i == AMOSTRAS){
+    //flag == false;
+    ticker.detach();
+    float posicao;
+    posicao = calculaPosicao();
+    //Serial.println(posicao*100);
+    ticker.attach_ms(READING_INTERVAL, reading);
+    i = 0;
+ }
 
 }
 
@@ -240,18 +245,42 @@ void enviar_pacote_inercial() {
   //Serial.println(a.y);
 }
 
-void calculaOffset(){
-  ax_offset = mpu.getXAccelOffset();
-  ay_offset = mpu.getYAccelOffset();
-  az_offset = mpu.getZAccelOffset();
-  gx_offset = mpu.getXGyroOffset();
-  gy_offset = mpu.getYGyroOffset();
-  gz_offset = mpu.getZGyroOffset();
+float calculaPosicao(){
+  int n = 0, cont[2] = {0,0};
+  float velAux = 0;
+  float pos = 0;
   
-  mpu.setXAccelOffset(ax_offset);
-  mpu.setYAccelOffset(ay_offset);
-  mpu.setZAccelOffset(az_offset);
-  mpu.setXGyroOffset(gx_offset);
-  mpu.setYGyroOffset(gy_offset);
-  mpu.setZGyroOffset(gz_offset);
+  while(n < AMOSTRAS){
+    vel[n] = velAux + ((accel[n] + accel[n+1])*50)/2000;
+    velAux = vel[n];
+    //Serial.println(vel[n]);
+    n++;
+  }
+  
+  n = 1;
+
+  
+  while(true){
+    if(vel[n] < vel[n-1] && vel[n] < vel[n+1]){
+      if(cont[0] == 0)
+        cont[0] = n;
+      else{
+        cont[1] = n;
+        break;
+      }
+    }
+    n++;
+  }
+
+  //Serial.print(vel[cont[0]]);
+  //Serial.print(" ");
+  //Serial.println(vel[cont[1]]);
+  
+  for(int j = cont[0]; j < cont[1]; j++){
+    pos += ((vel[j] + vel[j+1])*50)/2000;
+  }
+
+  Serial.println(pos);
+  
+  return pos;
 }
